@@ -2,7 +2,7 @@
 title: "One direction? A tutorial for circular data in cognitive psychology."
 
 author: |
-  | Jolien Cremers^[Corresponding author: j.cremers@uu.nl] $^1$, Irene Klugkist $^{1,2}$
+  | Jolien Cremers $^1$, Irene Klugkist $^{1,2}$
   | $^1$Department of Methodology and Statistics, Utrecht University
   | $^2$Research methodology, Measurement and Data Analysis, Behavioural Sciences, University of Twente
   
@@ -23,7 +23,7 @@ output:
 fontsize: 11pt
 geometry: margin=1in
 documentclass: article
-csl: apa.csl
+csl: plos.csl
 pandoc_args: --natbib
 bibliography: CircularData.bib
 
@@ -80,7 +80,7 @@ on statistical analysis in psychology or the social sciences in general nor are
 they very well known amongst social scientific researchers.
 
 Therefore, this paper aims at giving a tutorial in working with and analysing 
-circular data to researchers in congintive psychology and the social sciencesin
+circular data to researchers in cognitive psychology and the social sciences in
 general.  The main goal of this tutorial is to explain how to inspect and
 analyse your data when the outcome variable is circular. We will discuss data
 inspection, model fit, estimation and hypothesis testing in general linear
@@ -123,19 +123,19 @@ has a periodic nature. The most intuitive form of circular data comes in the
 form of directions on a compass. For example, a participant in an experiment 
 could be instructed to move or point to a certain target. We can then measure 
 the direction, North, South, East or West on a scale from 0 to 360 degrees. A 
-plot of such measurements for several participants is shown in Figure 
-\ref{plotdir}. In this plot we can easily see the periodicity of the data, 
-0$^\circ$ represents the same datapoint as 360$^\circ$. Furthermore, we can see
-what happens if we would treat this data in the 'usual' linear way. Participants
-that moved North-East have a score of 45$^\circ$ and participants that moves
-South-East have a score of 315$^\circ$. On the circle we can see that this is
-only 90$^\circ$ apart, while on a linear scale it is much further apart at 
-315$^\circ$ - 45$^\circ$ = 270$^\circ$. More importantly however, there is a
-difference between the circular and linear means for this data. In Figure
-\ref{plotdir} we see that the circular mean direction is 0$^\circ$. The linear
-mean however is 180$^\circ$ and is opposite to the actual mean direction of the
-data. Clearly, a linear treatment of the data in Figure \ref{plotdir} can lead
-to incorrect conclusions.
+plot with simulated data containing such measurements for several participants
+is shown in Figure \ref{plotdir}. In this plot we can easily see the periodicity
+of the data, 0$^\circ$ represents the same datapoint as 360$^\circ$.
+Furthermore, we can see what happens if we would treat this data in the 'usual'
+linear way. Participants that moved North-East have a score of 45$^\circ$ and
+participants that moves South-East have a score of 315$^\circ$. On the circle we
+can see that this is only 90$^\circ$ apart, while on a linear scale it is much
+further apart at 315$^\circ$ - 45$^\circ$ = 270$^\circ$. More importantly
+however, there is a difference between the circular and linear means for this
+data. In Figure \ref{plotdir} we see that the circular mean direction is
+0$^\circ$. The linear mean however is 180$^\circ$ and is opposite to the actual
+mean direction of the data. Clearly, a linear treatment of the data in Figure
+\ref{plotdir} can lead to incorrect conclusions.
 
 ```{r plotdir, cache = TRUE, warning = FALSE, dev = "tikz",fig.ext="svg", echo = FALSE, results = FALSE}
 
@@ -171,17 +171,17 @@ tools::texi2dvi("plotdir.tex",pdf=TRUE)
 
 Clock times are another type of circular data. We might for instance be 
 interested at what time of day a certain event takes place, e.g. the time of day
-at which positive affect is highest. Figure \ref{plothour} shows data the time 
-of day at which positive affect is highest for two groups of participants, e.g. 
-two groups of psychiatrical patients who are being treated for depression at 
-different clinics. From the plots we clearly see that the peak of positive 
-affect for the two groups is at roughly the same time of day, one slightly 
-before 12 pm and one slighly after. However, if we were to analyze this data 
-using standard statistics for linear data and we would compare the means of the 
-two groups, 11 pm and 1 am we would reach a completely different conclusion. The
-two means are namely at the two opposite ends of a linear scale from 00.00 am to
-12.00 pm, and we would counclude that the time of day at which positive affect
-is highest is different for the two groups.
+at which positive affect is highest. Figure \ref{plothour} shows simulated data
+for the time of day at which positive affect is highest for two groups of
+participants, e.g. two groups of psychiatrical patients who are being treated
+for depression at different clinics. From the plots we clearly see that the peak
+of positive affect for the two groups is at roughly the same time of day, one
+slightly before 12 pm and one slighly after. However, if we were to analyze this
+data using standard statistics for linear data and we would compare the means of
+the two groups, 11 pm and 1 am we would reach a completely different conclusion.
+The two means are namely at the two opposite ends of a linear scale from 00.00
+am to 12.00 pm, and we would conclude that the time of day at which positive
+affect is highest is different for the two groups.
 
 ```{r plothour, cache = TRUE, warning = FALSE, dev = "tikz",fig.ext="svg", echo = FALSE, results = FALSE}
 
@@ -227,10 +227,15 @@ to inspect and compute descriptive measures for circular data.
 
 \section{Inspecting your data}\label{DataInspection}
 
-Before any statistical analysis it is wise to inspect your data. In this section
-we will outline a basic way to do so using the \verb|R| packages \verb|bpnreg|
-and \verb|circular| [@circularpackage]. We will illustrate this for an example
-dataset, the motor resonance data, introduced below.
+In the previous section we have seen that the computation of a circular mean 
+differs from that of a linear mean. Also other methods for data inspection, the 
+computation of other descriptive statistics and plotting methods, are different 
+for circular data. Because data inspection shoud be done before performing 
+inference of any kind we will outline a basic way to inspect circular data using
+the \verb|R| [@team2017r] packages \verb|bpnreg| [@bpnreg2018] and 
+\verb|circular| [@circularpackage]. We will discuss plots and several
+descriptive measures for circular data using an example dataset, the motor
+resonance data.
 
 
 \subsection{The motor resonance data}\label{regressionexample}
@@ -240,7 +245,7 @@ motor resonance. From now on we will call this data the motor resonance data.
 Motor resonance is a response in the brain in the primary motor cortex and 
 spinal circuits that is caused by observation of others' actions. In their 
 research @puglisi2017role conduct an experiment in which 'observers'  are asked 
-to either look at the movement of a hand of a 'mover' or at another other object
+to either look at the movement of a hand of a 'mover' or at another object
 in order to evaluate the role of attention in motor resonant response. The 
 experiment has three conditions: the 'explicit observation' condition (n = 14), 
 where observers are explicitly instructed to observe the hand, the 
@@ -254,7 +259,7 @@ observing the hand of the 'mover'. This is the resonant response. This resonant
 response is hypothesized to be strongest and more synchronized with the hand
 movement of the mover in the explicit condition and smallest in the implicit
 condition. In each condition the hand movements of the observers were measured
-and the phase difference between movement of the the observers' hand and the
+and the phase difference between movement of the observers' hand and the
 hand of the mover was calculated. This phase difference is a measurement of the
 strength of the resonant response and a circular variable. It can thus be
 described and analyzed using circular statistics. In addition to the phase
@@ -266,13 +271,15 @@ The baseline condition is however not included in the example data since no
 resonant response was observerd in the observers' hand according to the original
 research.
 
-The motor resonance data can be found in the package \verb|bpnreg| as the
-dataframe \verb|Motor|. \verb|Motor| is a dataframe with 42 rows and 7
-variables. The variable \verb|Cond| indicates the condition (explicit,
-semi-implicit and implicit) a participant was placed in, the \verb|AvAmp|
-variable contains the average amplitude, and that the \verb|PhaseDiff| and
-\verb|Phaserad| variables contain the measured phase difference between
-'observer' and 'mover' in degrees and radians respectively.
+The motor resonance data can be found in the package \verb|bpnreg| as the 
+dataframe \verb|Motor|. \verb|Motor| is a dataframe with 42 rows and 7 
+variables. The variable \verb|Cond| indicates the condition (explicit, 
+semi-implicit and implicit) a participant was placed in, the \verb|AvAmp| 
+variable contains the average amplitude, and the \verb|PhaseDiff| and 
+\verb|Phaserad| variables contain the measured phase difference between 
+'observer' and 'mover' in degrees and radians respectively. Note that circular
+data can be represented both in degrees on a scale from 0$^\circ$ to 360$^\circ$
+and in radians on a scale from 0 to 2$\pi$ (1 degree = 1 * $\pi/180^\circ$ radians).
 
 
 \subsection{Plots for circular data}\label{Plots}
@@ -285,13 +292,6 @@ imp <- subset(Motor, Cond == "imp")$PhaseDiff
 exp <- as.circular(exp, units = "degrees")
 sem.imp <- as.circular(sem.imp, units = "degrees")
 imp <- as.circular(imp, units = "degrees")
-```
-
-```{r, eval = FALSE, echo = FALSE}
-plot(exp, units = "degrees", main = "Explicit observation")
-plot(sem.imp, units = "degrees", main = "Semi-implicit observation")
-plot(imp, units = "degrees", main = "Implicit observation")
-
 ```
 
 ```{r plotMotor, cache = TRUE, warning = FALSE, dev = "tikz",fig.ext="svg", echo = FALSE, results = FALSE}
@@ -323,7 +323,7 @@ difference between the three experimental conditions differs. To be more precise
 whether there is a smaller phase difference in the explicit condition than in 
 the other two. Differences that are observed in the phase difference are 
 interpreted as differences in the strength of the resonant response 
-[@puglisi2017role]. A smaller phase difference indicates a stronger an more
+[@puglisi2017role]. A smaller phase difference indicates a stronger and more
 synchronized resonant response.  A first step to investigating the question of
 interest is plotting the phase differences of the three conditions. We can do so
 using the package \verb|circular|.
@@ -389,28 +389,7 @@ information on the spread of a circular variable in the population. It is
 interpreted as a precision measure where 0 means that the spread is large and 1
 means that all data are concentrated at a single value. Sample statistics for
 these values are $\bar{\theta}$ for the mean and $\bar{R}$ for the mean
-resultant length. @fisher1995statistical explains how to compute these two
-statistics. 
-
-Graphically we can illustrate their computation as shown in Figure 
-\ref{meanrbarplot}. On the left side of this figure we see two sets of circular 
-data. We represent represent a circular datapoint as a vector composed of the
-cosine and sine of the datapoint instead of one value a measure in degrees (or
-radians). E.g. for a score of 90$^\circ$ we have the following vector 
-$(\cos(90^\circ), \sin(90^\circ))$. The solid vectors in Figure
-\ref{meanbarplot} each represent one circular datapoint. To compute the mean
-directions and resultant lengths for the datasets on the left we place the
-vectors head to toe, as in the right side of Figure \ref{meanrbarplot}. We then
-connect the toe of the first vector to the head of the last vector. This results
-in the dotted vectors on the right side of Figure \ref{meanrbarplot}. The
-direction of the dotted vector is the mean direction, $\bar{\theta}$ of the
-vectors from which it was created. The length of the dotted vector is the
-resultant length. The mean resultant length, $\bar{R}$ is the length of this
-vector divided by the amount of vectors from which it was created. In Figure
-\ref{meanrbarplot} we see that the data in the bottom left figure are much more
-concentrated on the circle than the data in the upper left figure. This
-translates to the resultant length in the bottom right being larger than the
-resultant length (length of the dotted vector) in the upper left.
+resultant length. 
 
 ```{r meanrbar, cache = TRUE, dev = "tikz",fig.ext="svg", results = FALSE, echo = FALSE}
 
@@ -464,6 +443,28 @@ tools::texi2dvi("meanrbar.tex",pdf=TRUE)
 		\label{meanrbarplot}
 \end{figure}
 
+Graphically we can illustrate the computation of $\bar{\theta}$ and $\bar{R}$ as
+shown in Figure \ref{meanrbarplot}. On the left side of this figure we see two 
+sets of circular data. We represent a circular datapoint as a vector composed of
+the cosine and sine of the datapoint instead of one value a measure in degrees 
+(or radians). E.g. for a score of 90$^\circ$ we have the following vector 
+$(\cos(90^\circ), \sin(90^\circ))$. The solid vectors in Figure 
+\ref{meanrbarplot} each represent one circular datapoint. To compute the mean 
+directions and resultant lengths for the datasets on the left we place the 
+vectors head to toe, as in the right side of Figure \ref{meanrbarplot}. We then 
+connect the toe of the first vector to the head of the last vector. This results
+in the dotted vectors on the right side of Figure \ref{meanrbarplot}. The 
+direction of the dotted vector is the mean direction, $\bar{\theta}$ of the 
+vectors from which it was created. The length of the dotted vector is the 
+resultant length. The mean resultant length, $\bar{R}$ is the length of this 
+vector divided by the number of vectors from which it was created. In Figure 
+\ref{meanrbarplot} we see that the data in the bottom left figure are much more 
+concentrated on the circle than the data in the upper left figure. This 
+translates to the resultant length in the bottom right being larger than the 
+resultant length (length of the dotted vector) in the upper right. Formulae for
+the computation of $\bar{\theta}$ and $\bar{R}$ can be found in
+@fisher1995statistical.
+
 In Table \ref{TableDescriptives} we see that in the motor resonance data the
 circular mean of the phase difference for the explicit observation condition is
 highest with 49.55$^{\circ}$. The mean phase differences for the semi-implicit
@@ -475,14 +476,15 @@ differ more between the individuals in the semi-implicit and implicit
 observation conditions where the spread is larger at $\bar{R}$'s of 0.54 and
 0.56 respectively.
 
-Table \ref{TableDescriptives} also shows a circular variance and standard
-deviation. The sample value, $V_m$ for the circular variance is defined as
+Table \ref{TableDescriptives} also shows a circular variance and standard 
+deviation. The sample value, $V_m$ for the circular variance is defined as 
 $1-\bar{R}$. Its interpretation is exactly opposite to the interpretation of the
-mean resultant length. A variance of one means that a variable has a very large
-spread and a variance of 0 means that all data are concentrated at one point.
-Note that unlike a linear variance the circular variance is bounded between 0
-and 1. A sample circular standard deviation, $v$, can also be computed
-[@fisher1995statistical]. 
+mean resultant length. A variance of one means that a variable has a very large 
+spread and a variance of 0 means that all data are concentrated at one point. 
+Note that unlike a linear variance the circular variance is bounded between 0 
+and 1. A sample circular standard deviation, $v$, can also be computed 
+[@fisher1995statistical]. This deviation runs from 0 to infinity where higher
+values indicate a larger dispersion.
 
 We have seen that both the average phase difference and variances of the phase
 difference seem to be different for the three conditions in the motor resonance
@@ -588,7 +590,7 @@ estimation. More details on this Bayesian method are outlined by
 @nunez2011bayesian and @CremersMulderKlugkist2017 for regression models.
 
 Assuming that $\boldsymbol{y}$ has a bivariate normal distribution, the relation
-in Equation \ref{embedding} implies that $\theta$ has a projected normal
+in (\ref{embedding}) implies that $\theta$ has a projected normal
 distribution. The projected normal (PN) distribution for the cicular outcome
 $\theta$ is expressed as:
 
@@ -695,6 +697,45 @@ fit.Motor <- bpnr(pred.I = Phaserad ~ 1 + Cond, data = Motor,
 ```
 
 
+```{r spreadeffect, cache = TRUE, results = FALSE, echo = FALSE}
+
+a1 <- fit.Motor$B1[,"(Intercept)"]
+a2 <- fit.Motor$B2[,"(Intercept)"]
+b1 <- fit.Motor$B1[,"Condsemi.imp"]
+b2 <- fit.Motor$B2[,"Condsemi.imp"]
+c1 <- fit.Motor$B1[,"Condimp"]
+c2 <- fit.Motor$B2[,"Condimp"]
+
+zeta   <- sqrt((a1 + b1)^2 + (a2 + b2)^2)^2/4
+spread <- 1 - sqrt((pi * zeta)/2) * exp(-zeta) * 
+                        (besselI(zeta, 0) + besselI(zeta, 1))
+
+
+zeta2   <- sqrt((a1 + c1)^2 + (a2 + c2)^2)^2/4
+spread2 <- 1 - sqrt((pi * zeta2)/2) * exp(-zeta2) * 
+                        (besselI(zeta2, 0) + besselI(zeta2, 1))
+
+zeta3   <- sqrt((a1 )^2 + (a2 )^2)^2/4
+spread3 <- 1 - sqrt((pi * zeta3)/2) * exp(-zeta3) * 
+                        (besselI(zeta3, 0) + besselI(zeta3, 1))
+
+mode_est(spread)
+mean(spread)
+sd(spread)
+hpd_est(spread)
+
+mode_est(spread2)
+mean(spread2)
+sd(spread2)
+hpd_est(spread2)
+
+mode_est(spread3)
+mean(spread3)
+sd(spread3)
+hpd_est(spread3)
+
+```
+
 \subsubsection{Convergence}
 
 In a Bayesian model that uses MCMC sampling for estimation we always have to 
@@ -703,11 +744,32 @@ traceplot is one way to assess the convergence of a parameter. As an
 illustration we will show the traceplot for the MCMC chains for one of the
 parameters of the model.
 
-```{r, fig.width=12, fig.height=4, echo = FALSE}
-traceplot(fit.Motor, parameter = "circ.diff", variable = "Condimp")
+```{r, echo = FALSE, dev = "tikz",fig.ext="svg", echo = FALSE, results = FALSE}
+
+require(tikzDevice)
+
+tikz("traceplot.tex", standAlone =TRUE, height = 4, width = 12, pointsize = 12, engine = "pdftex")
+
+traceplot(fit.Motor, parameter = "B1", variable = "Condimp")
+
+dev.off() 
+
+tools::texi2dvi("traceplot.tex",pdf=TRUE)
+
 ```
 
-From the previous traceplots we may conclude that the MCMC chain converged 
+\begin{figure}
+        \centering
+
+\includegraphics[width=\textwidth]{traceplot.pdf}
+       
+        \caption{A traceplot showing convergence of the parameter $\beta_2^{I}$ of the model fit to the motor resonance data.}
+        
+		\label{traceplot}
+		
+\end{figure}
+
+From the previous traceplot we may conclude that the MCMC chain converged 
 within 10000 iterations and a burn-in of 100. The plot looks like a 
 'fat-caterpillar' meaning that the chain has reached an equilibrium around a 
 particular value. In case an MCMC chain does not converge we could have add more
@@ -723,24 +785,41 @@ To answer the question whether the conditions of the motor resonance data differ
 in their phase difference we investigate the estimated circular regression 
 coefficients. In @CremersMulderKlugkist2017 it is explained how to obtain 
 circular regression coefficients for continuous variables and how to interpret 
-them. However, because there are no continuous variables in the model we only 
-get estimates for the circular means of the three conditions in the data. 
-Because we use a Bayesian method we in fact get the posterior distributions of 
-these means. Philosophically, in Bayesian statistics each parameter is said to 
-have its own distribution. The posterior distribution is the result of the prior
-knowledge we have about a parameter before conducting a study, formalized as a 
-'prior' distribution\footnote{In this paper we choose non-informative priors for
-the parameters.} and the information that lies in the data obtained from a 
-study, formalized as the likelihood. The fact that we obtain the distribution of
-a parameter is convenient for inference purposes since this means that we do not
-just have a point estimate of a parameter (the mean or mode of the posterior
-distribution) but we also automatically get an uncertainty estimates (the
-standard deviation of the posterior distribution).\footnote{For more background
-on Bayesian statistics see e.g. Gelman et.al. (2014).}
+them. However, because there are no continuous predictors in the model we want
+to estimate the circular means of the three conditions in the data. To do so we
+use (\ref{PredVal}) to transform the results from the two components of
+$\boldsymbol{\mu}$ to the circle.
+
+
+\begin{align}\label{PredVal}
+\theta			\nonumber							&= \text{atan2}\left(\hat{y}^{II}, \: \hat{y}^{I}\right)  \\\nonumber
+																		&= \arctan\left(\frac{\hat{y}^{II}}{\hat{y}^{I}}\right) & \text{if}  \quad&\hat{y}^{I} > 0 \\\nonumber
+																		&= \arctan\left(\frac{\hat{y}^{II}}{\hat{y}^{I}}\right) + \pi & \text{if}  \quad& \hat{y}^{I}  <  0  & \&\:\: \hat{y}^{II} \geq 0\\\nonumber
+																		&= \arctan\left(\frac{\hat{y}^{II}}{\hat{y}^{I}}\right) - \pi & \text{if}  \quad&\hat{y}^{I}  <  0  & \&\:\:\hat{y}^{II}  < 0\\\nonumber
+																		&= +\frac{\pi}{2} & \text{if}  \quad& \hat{y}^{I}  =  0  & \&\:\:\hat{y}^{II} > 0\\\nonumber
+																		&= -\frac{\pi}{2} & \text{if}  \quad&\hat{y}^{I} =  0  & \&\:\:\hat{y}^{II} < 0\\
+																		&= \text{undefined} & \text{if} \quad& \hat{y}^{I} =  0  &  \&\:\:\hat{y}^{II} = 0 
+\end{align}
+
+E.g. for the circular mean of the semi-implicit condition $\hat{y}^{I} = 
+\beta_0^{I} + \beta_1^{I}$ and $\hat{y}^{II} = \beta_0^{II} + \beta_1^{II}$ in
+(\ref{PredVal}). Because we use a Bayesian method we get the posterior
+distributions of the three circular means. Philosophically, in Bayesian
+statistics each parameter is said to have its own distribution. The posterior
+distribution is the result of the prior knowledge we have about a parameter
+before conducting a study, formalized as a 'prior' distribution (in this
+paper we choose non-informative priors for the parameters) and the information
+that lies in the data obtained from a study, formalized as the likelihood. The
+fact that we obtain the distribution of a parameter is convenient for inference
+purposes since this means that we do not just have a point estimate of a
+parameter (the mean or mode of the posterior distribution) but we also
+automatically get an uncertainty estimates (the standard deviation of the
+posterior distribution). For more background on Bayesian statistics see e.g.
+@BDA.
 
 \begin{table}
 \centering
-\caption{Descriptives of the posterior distributions of the circular means of the phase diferencefor the three conditions of the motor resonance data.} 
+\caption{Posterior estimates of the circular means of the phase diference for the three conditions of the motor resonance data.} 
 \begin{tabular}{llllll}
   \hline\noalign{\smallskip}
 Condition & Mode & Mean & sd & LB HPD & UB HPD\\ \hline\noalign{\smallskip}
@@ -766,14 +845,36 @@ can say that the probability that $\mu$ lies between 2 and 4 is 0.95.
 HPD intervals can also be used to test whether a parameter is different from a 
 certain value or whether two parameter estimates are different. In Table 
 \ref{TableresMRmean} we see that the HPD intervals of the circular means for the
-three conditions in the motor resonance data overlap. The cicular mean of the
+three conditions in the motor resonance data overlap. The circular mean of the
 phase difference is estimated at 47.70$^\circ$ (22.26$^\circ$; 67.99$^\circ$)
 for the explicit condition, 37.22$^\circ$ (-2.25$^\circ$; 68.22$^\circ$) for the
 implicit condition and 21.08$^\circ$ (-18.27$^\circ$; 55.22$^\circ$) for the
 semi-implicit condition. We thus conclude that the circular means for the three
 conditions do not differ and that there is no effect of condition on the average
-phase difference. \textcolor{red}{Ook de varianties van de drie groepen
-vergelijken?}
+phase difference. 
+
+In addition to testing whether the circular means of the three conditions are 
+different the circular ANOVA also allows us to test whether there is an effect 
+of condition on the circular variances of the phase differences. Table
+\ref{TableresMRvar} shows summary statistics for the posterior distributions of
+the circular variance for each condition. As expected the estimated circular
+variance for the explicit condition is lowest. However, the variances of the
+three groups do not differ; their HPD intervals overlap. We thus conclude that
+there if no effect of condition on the variance of the phase difference.
+
+\begin{table}
+\centering
+\caption{Posterior estimates of the circular variances of the phase diference for the three conditions of the motor resonance data.} 
+\begin{tabular}{llllll}
+  \hline\noalign{\smallskip}
+Condition & Mode & Mean & sd & LB HPD & UB HPD\\ \hline\noalign{\smallskip}
+explicit & 0.21 & 0.26 & 0.09 & 0.09 & 0.45\\
+semi-implicit & 0.37 & 0.44 & 0.13 & 0.19 & 0.36\\
+implicit & 0.36 & 0.42 & 0.13 & 0.18 & 0.68\\
+   \hline
+\end{tabular}
+\label{TableresMRvar}
+\end{table}
 
 
 \subsection{Other approaches to circular ANOVA}\label{otheranova}
@@ -789,21 +890,23 @@ projected normal regression model we conclude from this test that the average
 phase differences of the three conditions are not significantly different: F(2,
 39) = 1.02, p > 0.05.
 
-As in ANOVA models for linear data, we have to meet a set of 
-assumptions for this test to be valid. Firstly, the samples from the different 
-conditions are assumed to be von-Mises distributed in the Watson-Williams test.
-Secondly, the samples are assumed to have the same circular variance. The
-von-Mises distribution is a type of distribution for circular data, it is
-unimodal with mean $\mu$ and concentration $\kappa$. The assumption of
-homogeneity of variance is tested within the \verb|watson.williams.test|
-function itself. The assumption of von-Misesness can be tested using e.g. the
-Watson's goodness of fit test for the von Mises distribution. If we perform this
-test on the phase differences of the three subgroups we conclude that only the
-phase differences from the \verb|semi.implicit| and the \verb|implicit|
-condition are von-Mises distributed ($H_0$ is not rejected). This means that it
-is not completely valid to perform the Watson-Williams test on the motor
-resonance data. In addition, the Watson-Williams test does not allow for the
-addition of covariates and thus cannot estimate AN(C)OVA models.
+As in ANOVA models for linear data, we have to meet a set of assumptions for 
+this test to be valid. Firstly, the samples from the different conditions are 
+assumed to be von-Mises distributed in the Watson-Williams test. Secondly, the 
+samples are assumed to have the same circular variance. The von-Mises 
+distribution is a type of distribution for circular data, it is unimodal with 
+mean $\mu$ and concentration $\kappa$. The assumption of homogeneity of variance
+is tested within the \verb|watson.williams.test| function itself. For the motor 
+cognition data this assumption was met. The assumption of von-Misesness can be 
+tested using e.g. the Watson's goodness of fit test for the von Mises 
+distribution. If we perform this test on the phase differences of the three 
+subgroups we conclude that only the phase differences from the 
+\verb|semi.implicit| and the \verb|implicit| condition are von-Mises distributed
+($H_0$ is not rejected). This means that it is not completely valid to perform 
+the Watson-Williams test on the motor resonance data. In addition, the 
+Watson-Williams test does not allow for the addition of covariates and thus 
+cannot estimate AN(C)OVA models. Which the PN circular GLM introduced in Section
+\ref{RegModel} does allow for.
 
 ```{r, echo = FALSE, results = FALSE}
 watson.williams.test(Phaserad ~ Cond, data = Motor)
@@ -813,22 +916,32 @@ watson.test(subset(Motor, Cond == "semi.imp")$Phaserad, dist = "vonmises")
 watson.test(subset(Motor, Cond == "imp")$Phaserad, dist = "vonmises")
 ```
 
-Another method that we can use is a Bayesian circular GLM
-that falls within the intrinsic approach. The intrinsic approach to circular 
+Another method that we can use is a Bayesian circular GLM that falls within the 
+intrinsic approach [@mulder2017bayesian]. The intrinsic approach to circular 
 data differs from the embedding approach in the sense that it uses distributions
 that are directly defined on the circle instead of projecting distributions in 
 bivariate linear space onto the circle. The Watson-Williams test is thus also a 
-method that falls within the intrinsic approach. The Bayesian circular GLM can 
-be fit using the package \verb|circglmbayes|. Note that because it is a GLM this
-method can also fit ANCOVA and regression models. \textcolor{red}{Dit model ook fitten?}
+method that falls within the intrinsic approach. The Bayesian circular GLM using
+the intrinsic approach can be fit using the package \verb|circglmbayes|. When 
+non-informative priors are used this methods will give the same results as the 
+Watson-Williams test. However because it is a GLM this method can also fit 
+ANCOVA and regression models. In contrast to the the method from
+@mulder2017bayesian, in which homogeneity of variances is assumed the PN
+circular GLM does not have this assumption. This allows for more flexible
+modelling including testing for an effect of predictor variables (e.g. condition
+in Section \ref{ResMR}) on the variance.
 
 
 \section{Mixed-Effects models with a circular outcome}\label{MEModel}
 
-In this section we will introduce the circular mixed-effects model. We will
-first introduce a new dataset, the cognitive maps data, and give descriptive
-statistics. Then, we will shortly outline the theoretical background to the
-mixed-effects model and fit it to the cognitive maps data.
+An additional advantage of employing the embedding approach to circular data 
+over the intrinsic approach is that it is easier to model more complex data,
+e.g. repeated measures data, since we can 'borrow' methods to estimate these
+from the bivariate linear context. In this section we will introduce such a
+method: the circular mixed-effects model. We will first introduce a new dataset,
+the cognitive maps data, and give descriptive statistics. Then, we will shortly
+outline the theoretical background to the mixed-effects model and fit it to the
+cognitive maps data.
 
 
 \subsection{The cognitive maps data}\label{CogMap}
@@ -836,7 +949,7 @@ mixed-effects model and fit it to the cognitive maps data.
 The cognitive maps data is a subset of data from a study by @warren2017wormholes
 on the geometry of humans' knowledge of navigation space. In their study
 @warren2017wormholes amongst others conduct an experiment in which a total of 20
-participants used virtual reality headsets to navigate through one of two a 
+participants used virtual reality headsets to navigate through one of two 
 virtual mazes. The navigation task consisted of walking from a start object to a
 target object. In a training phase they had learned to navigate between 
 different pairs of start and target objects in one of two versions of the maze.
@@ -869,10 +982,10 @@ resulting in a total of 8 trials per participant.
 
 For this experiment we could be interested in the question whether the 
 participants in the non-Euclidean maze make use of the wormholes when navigating
-to the target objects and whether this is true for both the probe and standard
-target objects. Due to the design of the mazes the expected angular error was
-larger if a participant in the non-Euclidean maze used the wormhole to walk to
-the target object. We can thus use the angular error, our outcome variable, to 
+to the target objects and whether this is true for both the probe and standard 
+target objects. Due to the design of the mazes the expected angular error was 
+larger if a participant used the wormhole to walk to the target object in the
+non-Euclidean maze. We can thus use the angular error, our outcome variable, to 
 differentiate between participants that used the wormhole and those that took 
 another path to the target object. Additionally we can control for the amount of
 trials that a participant completed in the training phase.
@@ -889,13 +1002,13 @@ factor, and type of trial \verb|Trial.type|, a within-subjects factor. The
 variable \verb|Learn| indicates the amount of learning trials completed. 
 \verb|L.c| is a centered version of this variable. The angular error is 
 contained in the variables \verb|Error| and \verb|Error.rad| in degrees and 
-radians (1 rad = $180/\pi$ degrees) respectively. Descriptives for this data are
-shown in Table \ref{TableDescriptivesMaps}. Note that we averaged over subjects
-and the trials of each type. The circular mean of the angular error for the
-standard trials in the Euclidean maze is thus an average over 10 participants
-and 4 trials. We see what the angular errors of both trial types for the
-non-Euclidean maze deviate more from 0$^{\circ}$ (direction of the target
-object) than for the Euclidean maze.
+radians respectively. Descriptives for this data are shown in Table
+\ref{TableDescriptivesMaps}. Note that we averaged over subjects and the trials
+of each type. The circular mean of the angular error for the standard trials in
+the Euclidean maze is thus an average over 10 participants and 4 trials. We see
+what the angular errors of both trial types for the non-Euclidean maze deviate
+more from 0$^{\circ}$ (direction of the target object) than for the Euclidean
+maze.
 
 ```{r, echo = FALSE, eval = FALSE}
 euclidean <- subset(Maps, Maze == 0)$Error
@@ -1021,7 +1134,7 @@ type of trial (\verb|Trial.type|).
 
 \begin{table}
 \centering
-\caption{Descriptives of the posterior of the circular mean of the angular error for each condition.} 
+\caption{Posterior estimates of the circular mean of the angular error for each condition.} 
 \begin{tabular}{lllrrrrr}
   \hline\noalign{\smallskip}
 & Maze & Trial.type & mode & mean & sd & LB HPD & UB HPD  \\ \hline\noalign{\smallskip}
@@ -1039,7 +1152,7 @@ statistics of the posterior of the average angular error for each of the
 categories. Note that because there is a continuous predictor in the model the
 posterior estimates represent a marginal effect, they are the effect for an
 individual with a 0 score on the continuous predictor \verb|L.c|. Because we
-centered this predictor this means that they are the effect for an individual
+centered this predictor this means that this is the effect for an individual
 that has completed an average number of training trials.
 
 By looking at the 95$\%$ HPD intervals of the angular errors in Table 
@@ -1050,7 +1163,7 @@ the angular error in the Euclidean and non-Euclidean overlaps and that thus the
 angular error is not different. This means that in the standard trials the 
 participants on average did not make use of the wormholes in the non-Euclidean 
 maze. For the probe trials however, the HPD intervals of the Euclidean and 
-non-Euclidean does overlap and thus the angular error is different. This means 
+non-Euclidean  do not overlap and thus the angular error is different. This means 
 that in the probe trials, the participants on average did make use of the 
 wormholes in the non-Euclidean maze.
 
@@ -1108,22 +1221,24 @@ tools::texi2dvi("circregline.tex",pdf=TRUE)
 \label{circregline}
 \end{figure}
 
-In Figure \ref{circregline} a circular regression line for the effect of a
-predictor $x$ on the circular outcome is shown. This regression line can be
-described using the three circular coefficients $b_c$, $SAM$ and $AS$. The
-coefficient $b_c$ represents the slope of the circular regression line at the
+In Figure \ref{circregline} a circular regression line for the effect of a 
+predictor $x$ on the circular outcome is shown. Because the outcome variable is
+measured on a circular scale, the slope of this line (the effect of $x$) is not
+constant but different for different $x$ values. The regression line can be 
+described using the three circular coefficients $b_c$, $SAM$ and $AS$. The 
+coefficient $b_c$ represents the slope of the circular regression line at the 
 inflection point (the square in Figure \ref{circregline}). However, this may not
-be a representative effect for each dataset as the inflection point can lie in
-the extremes of the data (as in Figure \ref{circregline}) or even completely
-outside the range of the predictor $x$. Therefore two additional circular
-coefficients were developed by @CremersMulderKlugkist2017, $SAM$ and $AS$. The
-coefficient $SAM$ represents the slope of the circular regression line at the
-average of the predictor $\bar{x}$ and the coefficients $AS$ represents the
-average slope over all of the predictor values.
+be a representative effect for each dataset as the inflection point can lie in 
+the extremes of the data (as in Figure \ref{circregline}) or even completely 
+outside the range of the predictor $x$. Therefore two additional circular 
+coefficients were developed by @CremersMulderKlugkist2017, the slope at the mean
+$SAM$ and the average slope $AS$. The coefficient $SAM$ represents the slope of 
+the circular regression line at the average of the predictor ($\bar{x}$) and the
+coefficients $AS$ represents the average slope over all values of $x$.
 
 \begin{table}
 \centering
-\caption{Descriptives of the posterior of the coefficients of the effect of L.c on the angular error.} 
+\caption{Posterior estimates of the coefficients of the effect of L.c on the angular error.} 
 \begin{tabular}{lrrrrr}
   \hline\noalign{\smallskip}
 Coefficient & mode & mean & sd & LB HPD & UB HPD  \\ \hline\noalign{\smallskip}
@@ -1136,18 +1251,18 @@ $AS$  & -0.63$^{\circ}$  & -1.11$^{\circ}$  & 92.44$^{\circ}$ & -13.17$^{\circ}$
 \end{table}
 
 For the effect of L.c on the angular error in the cognitive maps data, the HPD 
-intervals for all three circular coefficients, $b_c$, $SAM$ and $AS$ include 0
-(see Table \ref{TableResMapsLc}. Thus we conclude that at the inflection point,
-at the average predictor value and on average \verb|L.c| the number of training
-trials does not influence the angular error. This is in fact a good thing, since
-it shows that the training phase of the experiment worked to get all
-participants at the same level. For educational purposes we will however
-continue to give the interpretation of the coefficients. The $SAM$ is
-interpreted as follows: at the average \verb|L.c|, for a 1 unit increase in
-\verb|L.c| the angular error increases with 0.58 degrees. The $AS$ can be
-interpreted as: on average, for a 1 unit increase in \verb|L.c| the angular
-error decreases with 0.63 degrees. The $b_c$ can be interpreted as: at the
-inflection point, for a 1 unit increase in \verb|L.c| the angular error
+intervals for all three circular coefficients, $b_c$, $SAM$ and $AS$ include 0 
+(see Table \ref{TableResMapsLc}. Thus we conclude that at the inflection point, 
+at the average predictor value and on average the number of training trials
+(\verb|L.c|) does not influence the angular error. This is in fact a good thing,
+since it shows that the training phase of the experiment worked to get all 
+participants at the same level. For educational purposes we will however 
+continue to give the interpretation of the coefficients. The $SAM$ is 
+interpreted as follows: at the average \verb|L.c|, for a 1 unit increase in 
+\verb|L.c| the angular error increases with 0.58 degrees. The $AS$ can be 
+interpreted as: on average, for a 1 unit increase in \verb|L.c| the angular 
+error decreases with 0.63 degrees. The $b_c$ can be interpreted as: at the 
+inflection point, for a 1 unit increase in \verb|L.c| the angular error 
 decreases with 0.89 degrees.
 
 
@@ -1169,12 +1284,14 @@ that cannot be properly incorporated in a standard regression model.
 
 \subsubsection{Model Comparison}\label{fitme}
 
-When fitting mixed-effects (or multilevel) models we often fit a set of nested
-models to our data and follow a model building strategy [@hox2002multilevel].
-This can be done top-down, starting with the most complex model, or bottom-up,
-starting with the simplest model. Here we use a bottom-up strategy and start
-with the so called intercept-only model, a model containing only a fixed and
-random intercept:
+When fitting mixed-effects (or multilevel) models we often fit a set of nested 
+models to our data and follow a model building strategy [@hox2002multilevel]. We
+do this in case we have no specific model in mind that we want to test and want
+to explore the individual contributions of variables or groups of variables to
+the model. Such a model building strategy can be done top-down, starting with
+the most complex model, or bottom-up, starting with the simplest model. Here we
+use a bottom-up strategy and start with the so called intercept-only model, a
+model containing only a fixed and random intercept:
 
 ```{r MEModelIO, cache = TRUE, results = FALSE}
 
@@ -1184,7 +1301,7 @@ fit.MapsIO <- bpnme(pred.I = Error.rad ~ (1|Subject),
 ```
 
 We then update this model with fixed effects for the predictors at the lowest
-level (within-subjects factors), in this case only one, \verb|Trial.type|. We do
+level (within-subjects factors), in this case \verb|Trial.type|. We do
 this to check whether the set of predictors improved the fit of the model and
 can explain a part of the random intercept variance from the intercept-only
 model.
@@ -1217,22 +1334,22 @@ fit.Maps2 <- bpnme(pred.I = Error.rad ~ Maze + Trial.type + (1|Subject),
                   its = 10000, burn = 1000, n.lag = 3, seed = 101)
 ```
 
-Additional steps, such as adding random slopes for first level predictors and
-cross-level interactions, can be taken. In this paper we will however stick to
-the previous three models.
+Additional steps, such as adding random slopes for first level predictors and 
+cross-level interactions, can be taken. In this paper we will however restrict
+the analysis to the previous three models.
 
 \textbf{Model fit}
 
-To assess the fit of the models we look at 4 different model fit criteria: two
-version of the deviance information criterion (DIC and DIC$_{alt}$) and two
-versions of the Watanabe-Akaike information criterion (WAIC$_1$ and WAIC$_2$)
-@BDA. We choose these four criteria because they are specifically useful in
-Bayesian models where MCMC methods have been used to estimate the parameters.
-All four criteria have a fit part consisting of a measure based on the
-loglikelihood and include a penalty in the form of an effective number of
-parameters. For all criteria lower values indicate better fit. @BDA describes
-how to compute these criteria. Table \ref{TableModelFitMaps} shows these
-criteria for 4 different models.
+To assess the fit of the models we look at 4 different model fit criteria: two 
+version of the deviance information criterion (DIC and DIC$_{alt}$) and two 
+versions of the Watanabe-Akaike information criterion (WAIC$_1$ and WAIC$_2$). 
+We choose these four criteria because they are specifically useful in Bayesian 
+models where MCMC methods have been used to estimate the parameters. All four 
+criteria have a fit part consisting of a measure based on the loglikelihood and 
+include a penalty in the form of an effective number of parameters. For all 
+criteria lower values indicate better fit. @BDA describes how to compute these 
+criteria. Table \ref{TableModelFitMaps} shows the results of these criteria for
+4 different models.
 
 
 \begin{table}
@@ -1250,15 +1367,15 @@ WAIC$_2$        & 308.43 & 271.77 & 255.40 & 259.02 \\
 \label{TableModelFitMaps}
 \end{table}
 
-In the results for the example we see that the fit improves in all 4 model
-diagnostics for each model except for the last one. This means that the
-predictor \verb|Trial.type| improves the fit of the model over the
-intercept-only model and that the predictors \verb|Maze| and \verb|Trial.type|
-together improve the fit of the model over the model with only the
+In the results for the example we see that the fit improves in all 4 model 
+diagnostics for each model except for the last one. This means that the 
+predictor \verb|Trial.type| improves the fit of the model over the 
+intercept-only model and that the predictors \verb|Maze| and \verb|Trial.type| 
+together improve the fit of the model over the model with only the 
 \verb|Trial.type| predictor. Because the variable \verb|L.c| had no effect it is
-logical that this predictor does not improve the fit of the most right model
-over the model with the \verb|Maze| and \verb|Trial.type| predictors. We
-conclude that the model with the predictors \verb|Trial.type| and \verb|Maze|
+as expected that this predictor does not improve the fit of the most right model
+over the model with the \verb|Maze| and \verb|Trial.type| predictors. We 
+conclude that the model with the predictors \verb|Trial.type| and \verb|Maze| 
 fits best.
 
 \textbf{Explained variance}
@@ -1275,11 +1392,11 @@ The posterior mode of the intercept variance in the intercept-only model equals
 $6.61*10^{-5} (8.20*10^{-6}; 3.62*10^{-3})$, the posterior mode of the intercept
 variance in the model with the \verb|Maze| and \verb|Trial.type| predictors
 equals $3.25*10^{-5} (4.40*10^{-6}; 1.59*10^{-3})$. First of all, note that in
-the intercept-only model there is almost to random intercept variance. The
+the intercept-only model there is almost no random intercept variance. The
 posterior mode of the circular variance is very close to 0. Compared to the
 estimates of the variance in the intercept-only model there is hardly any change
 in estimates for the variance in the mode with \verb|Maze| and
-\verb|Trial.type|.Furthermore, their HPD intervals have a very large overlap. We
+\verb|Trial.type|. Furthermore, their HPD intervals have a very large overlap. We
 thus conclude that the variables \verb|Maze| and \verb|Trial.type| did not
 explain any variance in the random intercepts. This makes sense as there was
 harly any intercept variance in the intercept-only model to begin with.

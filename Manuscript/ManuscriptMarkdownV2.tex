@@ -115,9 +115,7 @@
   \title{One direction? A tutorial for circular data in cognitive psychology.}
   \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
-  \author{Jolien Cremers\footnote{Corresponding author:
-  \href{mailto:j.cremers@uu.nl}{\nolinkurl{j.cremers@uu.nl}}} \(^1\),
-Irene Klugkist \(^{1,2}\)\\
+  \author{Jolien Cremers \(^1\), Irene Klugkist \(^{1,2}\)\\
 \(^1\)Department of Methodology and Statistics, Utrecht University\\
 \(^2\)Research methodology, Measurement and Data Analysis, Behavioural
 Sciences, University of Twente}
@@ -133,22 +131,18 @@ Sciences, University of Twente}
 \section{Introduction}\label{Introduction}
 
 Circular data arises in almost all fields of research, from ecology
-where data on the direction movement of animals is investigated (Rivest,
-Duchesne, Nicosia, \& Fortin, 2015) to the medical sciences where
-protein structure (Mardia, Taylor, \& Subramaniam, 2006) or neuronal
-activity (Rutishauser, Ross, Mamelak, \& Schuman, 2010) is investigated
-using periodic and thus circular measurements. The most direct examples
-of circular data within the social sciences arise in cognitive and
-experimental psychology. For example, in experiments on cognitive maps
-the human sense of direction is investigated through asking participants
-in a study to point north (Brunyé, Burte, Houck, \& Taylor, 2015) or to
-walk to a certain object (Warren, Rothman, Schnapp, \& Ericson, 2017).
-The closer the participants' pointing or walking direction was to the
-actual north or target object, the better their sense of direction.
-Other examples include the visual perception of space (Matsushima, Vaz,
-Cazuza, \& Ribeiro Filho, 2014), visual working memory (Heyes, Zokaei,
-\& Husain, 2016) and sensorimotor synchronization in music making
-(Kirschner \& Tomasello, 2009).
+where data on the direction movement of animals is investigated {[}1{]}
+to the medical sciences where protein structure {[}2{]} or neuronal
+activity {[}3{]} is investigated using periodic and thus circular
+measurements. The most direct examples of circular data within the
+social sciences arise in cognitive and experimental psychology. For
+example, in experiments on cognitive maps the human sense of direction
+is investigated through asking participants in a study to point north
+{[}4{]} or to walk to a certain object {[}5{]}. The closer the
+participants' pointing or walking direction was to the actual north or
+target object, the better their sense of direction. Other examples
+include the visual perception of space {[}6{]}, visual working memory
+{[}7{]} and sensorimotor synchronization in music making {[}8{]}.
 
 However, despite the fact that circular data is being collected in
 different areas of cognitive and experimental psychology, the knowledge
@@ -158,15 +152,14 @@ measurements at 0\(^\circ\) and 360\(^\circ\) represent the same
 direction whereas on a linear scale they would be located at opposite
 ends of a scale. For this reason circular data require specific analysis
 methods. Some less technical textbooks on analysis methods for circular
-data have been written (Batschelet, 1981; Fisher, 1995; Pewsey,
-Neuhäuser, \& Ruxton, 2013). However these works are not part of the
-`standard' texts on statistical analysis in psychology or the social
+data have been written {[}9--11{]}. However these works are not part of
+the `standard' texts on statistical analysis in psychology or the social
 sciences in general nor are they very well known amongst social
 scientific researchers.
 
 Therefore, this paper aims at giving a tutorial in working with and
-analysing circular data to researchers in congintive psychology and the
-social sciencesin general. The main goal of this tutorial is to explain
+analysing circular data to researchers in cognitive psychology and the
+social sciences in general. The main goal of this tutorial is to explain
 how to inspect and analyse your data when the outcome variable is
 circular. We will discuss data inspection, model fit, estimation and
 hypothesis testing in general linear models (GLM) and mixed-effects
@@ -207,21 +200,21 @@ that has a periodic nature. The most intuitive form of circular data
 comes in the form of directions on a compass. For example, a participant
 in an experiment could be instructed to move or point to a certain
 target. We can then measure the direction, North, South, East or West on
-a scale from 0 to 360 degrees. A plot of such measurements for several
-participants is shown in Figure \ref{plotdir}. In this plot we can
-easily see the periodicity of the data, 0\(^\circ\) represents the same
-datapoint as 360\(^\circ\). Furthermore, we can see what happens if we
-would treat this data in the `usual' linear way. Participants that moved
-North-East have a score of 45\(^\circ\) and participants that moves
-South-East have a score of 315\(^\circ\). On the circle we can see that
-this is only 90\(^\circ\) apart, while on a linear scale it is much
-further apart at 315\(^\circ\) - 45\(^\circ\) = 270\(^\circ\). More
-importantly however, there is a difference between the circular and
-linear means for this data. In Figure \ref{plotdir} we see that the
-circular mean direction is 0\(^\circ\). The linear mean however is
-180\(^\circ\) and is opposite to the actual mean direction of the data.
-Clearly, a linear treatment of the data in Figure \ref{plotdir} can lead
-to incorrect conclusions.
+a scale from 0 to 360 degrees. A plot with simulated data containing
+such measurements for several participants is shown in Figure
+\ref{plotdir}. In this plot we can easily see the periodicity of the
+data, 0\(^\circ\) represents the same datapoint as 360\(^\circ\).
+Furthermore, we can see what happens if we would treat this data in the
+`usual' linear way. Participants that moved North-East have a score of
+45\(^\circ\) and participants that moves South-East have a score of
+315\(^\circ\). On the circle we can see that this is only 90\(^\circ\)
+apart, while on a linear scale it is much further apart at 315\(^\circ\)
+- 45\(^\circ\) = 270\(^\circ\). More importantly however, there is a
+difference between the circular and linear means for this data. In
+Figure \ref{plotdir} we see that the circular mean direction is
+0\(^\circ\). The linear mean however is 180\(^\circ\) and is opposite to
+the actual mean direction of the data. Clearly, a linear treatment of
+the data in Figure \ref{plotdir} can lead to incorrect conclusions.
 
 \begin{figure}
         \centering
@@ -235,17 +228,18 @@ to incorrect conclusions.
 Clock times are another type of circular data. We might for instance be
 interested at what time of day a certain event takes place, e.g.~the
 time of day at which positive affect is highest. Figure \ref{plothour}
-shows data the time of day at which positive affect is highest for two
-groups of participants, e.g. two groups of psychiatrical patients who
-are being treated for depression at different clinics. From the plots we
-clearly see that the peak of positive affect for the two groups is at
-roughly the same time of day, one slightly before 12 pm and one slighly
-after. However, if we were to analyze this data using standard
-statistics for linear data and we would compare the means of the two
-groups, 11 pm and 1 am we would reach a completely different conclusion.
-The two means are namely at the two opposite ends of a linear scale from
-00.00 am to 12.00 pm, and we would counclude that the time of day at
-which positive affect is highest is different for the two groups.
+shows simulated data for the time of day at which positive affect is
+highest for two groups of participants, e.g.~two groups of psychiatrical
+patients who are being treated for depression at different clinics. From
+the plots we clearly see that the peak of positive affect for the two
+groups is at roughly the same time of day, one slightly before 12 pm and
+one slighly after. However, if we were to analyze this data using
+standard statistics for linear data and we would compare the means of
+the two groups, 11 pm and 1 am we would reach a completely different
+conclusion. The two means are namely at the two opposite ends of a
+linear scale from 00.00 am to 12.00 pm, and we would conclude that the
+time of day at which positive affect is highest is different for the two
+groups.
 
 \begin{figure}
         \centering
@@ -268,56 +262,61 @@ descriptive measures for circular data.
 
 \section{Inspecting your data}\label{DataInspection}
 
-Before any statistical analysis it is wise to inspect your data. In this
-section we will outline a basic way to do so using the \verb|R| packages
-\verb|bpnreg| and \verb|circular| (Agostinelli \& Lund, 2013). We will
-illustrate this for an example dataset, the motor resonance data,
-introduced below.
+In the previous section we have seen that the computation of a circular
+mean differs from that of a linear mean. Also other methods for data
+inspection, the computation of other descriptive statistics and plotting
+methods, are different for circular data. Because data inspection shoud
+be done before performing inference of any kind we will outline a basic
+way to inspect circular data using the \verb|R| {[}12{]} packages
+\verb|bpnreg| {[}13{]} and \verb|circular| {[}14{]}. We will discuss
+plots and several descriptive measures for circular data using an
+example dataset, the motor resonance data.
 
 \subsection{The motor resonance data}\label{regressionexample}
 
-In this section we introduce data from an article by Puglisi et al.
-(2017) on human motor resonance. From now on we will call this data the
-motor resonance data. Motor resonance is a response in the brain in the
-primary motor cortex and spinal circuits that is caused by observation
-of others' actions. In their research Puglisi et al. (2017) conduct an
-experiment in which `observers' are asked to either look at the movement
-of a hand of a `mover' or at another other object in order to evaluate
-the role of attention in motor resonant response. The experiment has
-three conditions: the `explicit observation' condition (n = 14), where
-observers are explicitly instructed to observe the hand, the
-`semi-implicit observation' condition (n = 14) where the observers have
-to perform a task that requires the implicit observation of the hand of
-the mover and the `implicit observation' condition (n = 14), where
-observers have to perform a task that is independent of the observation
-of the hand of the mover. The idea of motor resonance is that the
-`observer' starts moving his or her hand in the same manner as the
-`mover' because he or she is implicitly or explicitly observing the hand
-of the `mover'. This is the resonant response. This resonant response is
-hypothesized to be strongest and more synchronized with the hand
-movement of the mover in the explicit condition and smallest in the
-implicit condition. In each condition the hand movements of the
-observers were measured and the phase difference between movement of the
-the observers' hand and the hand of the mover was calculated. This phase
-difference is a measurement of the strength of the resonant response and
-a circular variable. It can thus be described and analyzed using
-circular statistics. In addition to the phase difference the average
-amplitute of the hand movement of the observer was computed. Note that
-in the original article there was also a baseline condition (n=14)
-without a mover. Instead, observers had to look at an inanimate object
-that moves in an identical manner to the hand of the mover in other
-conditions. The baseline condition is however not included in the
-example data since no resonant response was observerd in the observers'
-hand according to the original research.
+In this section we introduce data from an article by {[}15{]} on human
+motor resonance. From now on we will call this data the motor resonance
+data. Motor resonance is a response in the brain in the primary motor
+cortex and spinal circuits that is caused by observation of others'
+actions. In their research {[}15{]} conduct an experiment in which
+`observers' are asked to either look at the movement of a hand of a
+`mover' or at another object in order to evaluate the role of attention
+in motor resonant response. The experiment has three conditions: the
+`explicit observation' condition (n = 14), where observers are
+explicitly instructed to observe the hand, the `semi-implicit
+observation' condition (n = 14) where the observers have to perform a
+task that requires the implicit observation of the hand of the mover and
+the `implicit observation' condition (n = 14), where observers have to
+perform a task that is independent of the observation of the hand of the
+mover. The idea of motor resonance is that the `observer' starts moving
+his or her hand in the same manner as the `mover' because he or she is
+implicitly or explicitly observing the hand of the `mover'. This is the
+resonant response. This resonant response is hypothesized to be
+strongest and more synchronized with the hand movement of the mover in
+the explicit condition and smallest in the implicit condition. In each
+condition the hand movements of the observers were measured and the
+phase difference between movement of the observers' hand and the hand of
+the mover was calculated. This phase difference is a measurement of the
+strength of the resonant response and a circular variable. It can thus
+be described and analyzed using circular statistics. In addition to the
+phase difference the average amplitute of the hand movement of the
+observer was computed. Note that in the original article there was also
+a baseline condition (n=14) without a mover. Instead, observers had to
+look at an inanimate object that moves in an identical manner to the
+hand of the mover in other conditions. The baseline condition is however
+not included in the example data since no resonant response was
+observerd in the observers' hand according to the original research.
 
 The motor resonance data can be found in the package \verb|bpnreg| as
 the dataframe \verb|Motor|. \verb|Motor| is a dataframe with 42 rows and
 7 variables. The variable \verb|Cond| indicates the condition (explicit,
 semi-implicit and implicit) a participant was placed in, the
-\verb|AvAmp| variable contains the average amplitude, and that the
+\verb|AvAmp| variable contains the average amplitude, and the
 \verb|PhaseDiff| and \verb|Phaserad| variables contain the measured
 phase difference between `observer' and `mover' in degrees and radians
-respectively.
+respectively. Note that circular data can be represented both in degrees
+on a scale from 0\(^\circ\) to 360\(^\circ\) and in radians on a scale
+from 0 to 2\(\pi\) (1 degree = 1 * \(\pi/180^\circ\) radians).
 
 \subsection{Plots for circular data}\label{Plots}
 
@@ -326,11 +325,10 @@ the phase difference between the three experimental conditions differs.
 To be more precise whether there is a smaller phase difference in the
 explicit condition than in the other two. Differences that are observed
 in the phase difference are interpreted as differences in the strength
-of the resonant response (Puglisi et al., 2017). A smaller phase
-difference indicates a stronger an more synchronized resonant response.
-A first step to investigating the question of interest is plotting the
-phase differences of the three conditions. We can do so using the
-package \verb|circular|.
+of the resonant response {[}15{]}. A smaller phase difference indicates
+a stronger and more synchronized resonant response. A first step to
+investigating the question of interest is plotting the phase differences
+of the three conditions. We can do so using the package \verb|circular|.
 
 \begin{figure}
         \centering
@@ -374,29 +372,7 @@ circular variable in the population. It is interpreted as a precision
 measure where 0 means that the spread is large and 1 means that all data
 are concentrated at a single value. Sample statistics for these values
 are \(\bar{\theta}\) for the mean and \(\bar{R}\) for the mean resultant
-length. Fisher (1995) explains how to compute these two statistics.
-
-Graphically we can illustrate their computation as shown in Figure
-\ref{meanrbarplot}. On the left side of this figure we see two sets of
-circular data. We represent represent a circular datapoint as a vector
-composed of the cosine and sine of the datapoint instead of one value a
-measure in degrees (or radians). E.g. for a score of 90\(^\circ\) we
-have the following vector \((\cos(90^\circ), \sin(90^\circ))\). The
-solid vectors in Figure \ref{meanbarplot} each represent one circular
-datapoint. To compute the mean directions and resultant lengths for the
-datasets on the left we place the vectors head to toe, as in the right
-side of Figure \ref{meanrbarplot}. We then connect the toe of the first
-vector to the head of the last vector. This results in the dotted
-vectors on the right side of Figure \ref{meanrbarplot}. The direction of
-the dotted vector is the mean direction, \(\bar{\theta}\) of the vectors
-from which it was created. The length of the dotted vector is the
-resultant length. The mean resultant length, \(\bar{R}\) is the length
-of this vector divided by the amount of vectors from which it was
-created. In Figure \ref{meanrbarplot} we see that the data in the bottom
-left figure are much more concentrated on the circle than the data in
-the upper left figure. This translates to the resultant length in the
-bottom right being larger than the resultant length (length of the
-dotted vector) in the upper left.
+length.
 
 \begin{figure}
         \centering
@@ -406,6 +382,30 @@ dotted vector) in the upper left.
          \caption{The computation of a circular mean and (mean) resultant length (right) for two sets of circular data (left). The solid lines are vectors representing the circular datapoints. The direction of the dotted vector is the mean direction and the length of the dotted vector is the resultant length.}
         \label{meanrbarplot}
 \end{figure}
+
+Graphically we can illustrate the computation of \(\bar{\theta}\) and
+\(\bar{R}\) as shown in Figure \ref{meanrbarplot}. On the left side of
+this figure we see two sets of circular data. We represent a circular
+datapoint as a vector composed of the cosine and sine of the datapoint
+instead of one value a measure in degrees (or radians). E.g. for a score
+of 90\(^\circ\) we have the following vector
+\((\cos(90^\circ), \sin(90^\circ))\). The solid vectors in Figure
+\ref{meanrbarplot} each represent one circular datapoint. To compute the
+mean directions and resultant lengths for the datasets on the left we
+place the vectors head to toe, as in the right side of Figure
+\ref{meanrbarplot}. We then connect the toe of the first vector to the
+head of the last vector. This results in the dotted vectors on the right
+side of Figure \ref{meanrbarplot}. The direction of the dotted vector is
+the mean direction, \(\bar{\theta}\) of the vectors from which it was
+created. The length of the dotted vector is the resultant length. The
+mean resultant length, \(\bar{R}\) is the length of this vector divided
+by the number of vectors from which it was created. In Figure
+\ref{meanrbarplot} we see that the data in the bottom left figure are
+much more concentrated on the circle than the data in the upper left
+figure. This translates to the resultant length in the bottom right
+being larger than the resultant length (length of the dotted vector) in
+the upper right. Formulae for the computation of \(\bar{\theta}\) and
+\(\bar{R}\) can be found in {[}9{]}.
 
 In Table \ref{TableDescriptives} we see that in the motor resonance data
 the circular mean of the phase difference for the explicit observation
@@ -426,7 +426,9 @@ the interpretation of the mean resultant length. A variance of one means
 that a variable has a very large spread and a variance of 0 means that
 all data are concentrated at one point. Note that unlike a linear
 variance the circular variance is bounded between 0 and 1. A sample
-circular standard deviation, \(v\), can also be computed (Fisher, 1995).
+circular standard deviation, \(v\), can also be computed {[}9{]}. This
+deviation runs from 0 to infinity where higher values indicate a larger
+dispersion.
 
 We have seen that both the average phase difference and variances of the
 phase difference seem to be different for the three conditions in the
@@ -486,23 +488,22 @@ dataset. Figure \ref{projectingplot} depicts this relation between
         
 \end{figure}
 
-The projected normal regression model is introduced by Presnell,
-Morrison, \& Littell (1998). This model makes use of the embedding
-approach to circular data. The idea behind the embedding approach is to
-not conduct inference on the circular variable \(\theta\) directly but
-to indirectly conduct inference on the underlying bivariate normal data
-in \(\boldsymbol{y}\). This makes the embedding approach a flexible
-approach to circular data as many different and complex types of models
-already exist for bivariate normal data. However, both the vector
-\(\boldsymbol{y}\) and value \(r\) are quantities that can not be
-obtained directly from \(\theta\). The estimation of these objects is a
-missing data problem. The solution for this missing data problem used in
-this paper relies on Bayesian estimation. More details on this Bayesian
-method are outlined by Nuñez-Antonio, Gutiérrez-Peña, \& Escarela (2011)
-and Cremers, Mulder, \& Klugkist (2018) for regression models.
+The projected normal regression model is introduced by {[}16{]}. This
+model makes use of the embedding approach to circular data. The idea
+behind the embedding approach is to not conduct inference on the
+circular variable \(\theta\) directly but to indirectly conduct
+inference on the underlying bivariate normal data in \(\boldsymbol{y}\).
+This makes the embedding approach a flexible approach to circular data
+as many different and complex types of models already exist for
+bivariate normal data. However, both the vector \(\boldsymbol{y}\) and
+value \(r\) are quantities that can not be obtained directly from
+\(\theta\). The estimation of these objects is a missing data problem.
+The solution for this missing data problem used in this paper relies on
+Bayesian estimation. More details on this Bayesian method are outlined
+by {[}17{]} and {[}18{]} for regression models.
 
 Assuming that \(\boldsymbol{y}\) has a bivariate normal distribution,
-the relation in Equation \ref{embedding} implies that \(\theta\) has a
+the relation in (\ref{embedding}) implies that \(\theta\) has a
 projected normal distribution. The projected normal (PN) distribution
 for the cicular outcome \(\theta\) is expressed as:
 
@@ -548,8 +549,8 @@ In terms of interpretation of the circular effect of a variable the two
 component structure in (\ref{regression}) poses a problem. The two
 components do not necessarily have a useful interpretation for each type
 of circular data, e.g.~we cannot talk of a 12 o'clock and 6 o'clock axis
-in Figure \ref{plothour}. Cremers et al. (2018) outline how this problem
-can be overcome and introduce new interpretation tools in PN multiple
+in Figure \ref{plothour}. {[}18{]} outline how this problem can be
+overcome and introduce new interpretation tools in PN multiple
 regression models that transform the effects on the two components to an
 effect on the circle. In this tutorial we will use these tools and
 interpret coefficients of a circular effect and not the coefficients for
@@ -625,45 +626,69 @@ model. A traceplot is one way to assess the convergence of a parameter.
 As an illustration we will show the traceplot for the MCMC chains for
 one of the parameters of the model.
 
-\includegraphics{ManuscriptMarkdownV2_files/figure-latex/unnamed-chunk-6-1.pdf}
+\begin{figure}
+        \centering
 
-From the previous traceplots we may conclude that the MCMC chain
+\includegraphics[width=\textwidth]{traceplot.pdf}
+       
+        \caption{A traceplot showing convergence of the parameter $\beta_2^{I}$ of the model fit to the motor resonance data.}
+        
+        \label{traceplot}
+        
+\end{figure}
+
+From the previous traceplot we may conclude that the MCMC chain
 converged within 10000 iterations and a burn-in of 100. The plot looks
 like a `fat-caterpillar' meaning that the chain has reached an
 equilibrium around a particular value. In case an MCMC chain does not
 converge we could have add more iterations, a larger \verb|n.lag| or
 more burn-in iterations. We can also evaluate other convergence
 diagnostics. The focus of this paper however does not lie on Bayesian
-data analysis and therefore we refer to other works, e.g. Gelman et al.
-(2014), for more information on assessing convergence.
+data analysis and therefore we refer to other works, e.g. {[}19{]}, for
+more information on assessing convergence.
 
 \subsubsection{Results}\label{ResMR}
 
 To answer the question whether the conditions of the motor resonance
 data differ in their phase difference we investigate the estimated
-circular regression coefficients. In Cremers et al. (2018) it is
-explained how to obtain circular regression coefficients for continuous
-variables and how to interpret them. However, because there are no
-continuous variables in the model we only get estimates for the circular
-means of the three conditions in the data. Because we use a Bayesian
-method we in fact get the posterior distributions of these means.
-Philosophically, in Bayesian statistics each parameter is said to have
-its own distribution. The posterior distribution is the result of the
-prior knowledge we have about a parameter before conducting a study,
-formalized as a `prior'
-distribution\footnote{In this paper we choose non-informative priors for
-the parameters.} and the information that lies in the data obtained from
-a study, formalized as the likelihood. The fact that we obtain the
+circular regression coefficients. In {[}18{]} it is explained how to
+obtain circular regression coefficients for continuous variables and how
+to interpret them. However, because there are no continuous predictors
+in the model we want to estimate the circular means of the three
+conditions in the data. To do so we use (\ref{PredVal}) to transform the
+results from the two components of \(\boldsymbol{\mu}\) to the circle.
+
+\begin{align}\label{PredVal}
+\theta          \nonumber                           &= \text{atan2}\left(\hat{y}^{II}, \: \hat{y}^{I}\right)  \\\nonumber
+                                                                        &= \arctan\left(\frac{\hat{y}^{II}}{\hat{y}^{I}}\right) & \text{if}  \quad&\hat{y}^{I} > 0 \\\nonumber
+                                                                        &= \arctan\left(\frac{\hat{y}^{II}}{\hat{y}^{I}}\right) + \pi & \text{if}  \quad& \hat{y}^{I}  <  0  & \&\:\: \hat{y}^{II} \geq 0\\\nonumber
+                                                                        &= \arctan\left(\frac{\hat{y}^{II}}{\hat{y}^{I}}\right) - \pi & \text{if}  \quad&\hat{y}^{I}  <  0  & \&\:\:\hat{y}^{II}  < 0\\\nonumber
+                                                                        &= +\frac{\pi}{2} & \text{if}  \quad& \hat{y}^{I}  =  0  & \&\:\:\hat{y}^{II} > 0\\\nonumber
+                                                                        &= -\frac{\pi}{2} & \text{if}  \quad&\hat{y}^{I} =  0  & \&\:\:\hat{y}^{II} < 0\\
+                                                                        &= \text{undefined} & \text{if} \quad& \hat{y}^{I} =  0  &  \&\:\:\hat{y}^{II} = 0 
+\end{align}
+
+E.g. for the circular mean of the semi-implicit condition
+\(\hat{y}^{I} = \beta_0^{I} + \beta_1^{I}\) and
+\(\hat{y}^{II} = \beta_0^{II} + \beta_1^{II}\) in (\ref{PredVal}).
+Because we use a Bayesian method we get the posterior distributions of
+the three circular means. Philosophically, in Bayesian statistics each
+parameter is said to have its own distribution. The posterior
+distribution is the result of the prior knowledge we have about a
+parameter before conducting a study, formalized as a `prior'
+distribution (in this paper we choose non-informative priors for the
+parameters) and the information that lies in the data obtained from a
+study, formalized as the likelihood. The fact that we obtain the
 distribution of a parameter is convenient for inference purposes since
 this means that we do not just have a point estimate of a parameter (the
 mean or mode of the posterior distribution) but we also automatically
 get an uncertainty estimates (the standard deviation of the posterior
-distribution).\footnote{For more background
-on Bayesian statistics see e.g. Gelman et.al. (2014).}
+distribution). For more background on Bayesian statistics see e.g.
+{[}19{]}.
 
 \begin{table}
 \centering
-\caption{Descriptives of the posterior distributions of the circular means of the phase diferencefor the three conditions of the motor resonance data.} 
+\caption{Posterior estimates of the circular means of the phase diference for the three conditions of the motor resonance data.} 
 \begin{tabular}{llllll}
   \hline\noalign{\smallskip}
 Condition & Mode & Mean & sd & LB HPD & UB HPD\\ \hline\noalign{\smallskip}
@@ -691,15 +716,37 @@ HPD intervals can also be used to test whether a parameter is different
 from a certain value or whether two parameter estimates are different.
 In Table \ref{TableresMRmean} we see that the HPD intervals of the
 circular means for the three conditions in the motor resonance data
-overlap. The cicular mean of the phase difference is estimated at
+overlap. The circular mean of the phase difference is estimated at
 47.70\(^\circ\) (22.26\(^\circ\); 67.99\(^\circ\)) for the explicit
 condition, 37.22\(^\circ\) (-2.25\(^\circ\); 68.22\(^\circ\)) for the
 implicit condition and 21.08\(^\circ\) (-18.27\(^\circ\);
 55.22\(^\circ\)) for the semi-implicit condition. We thus conclude that
 the circular means for the three conditions do not differ and that there
 is no effect of condition on the average phase difference.
-\textcolor{red}{Ook de varianties van de drie groepen
-vergelijken?}
+
+In addition to testing whether the circular means of the three
+conditions are different the circular ANOVA also allows us to test
+whether there is an effect of condition on the circular variances of the
+phase differences. Table \ref{TableresMRvar} shows summary statistics
+for the posterior distributions of the circular variance for each
+condition. As expected the estimated circular variance for the explicit
+condition is lowest. However, the variances of the three groups do not
+differ; their HPD intervals overlap. We thus conclude that there if no
+effect of condition on the variance of the phase difference.
+
+\begin{table}
+\centering
+\caption{Posterior estimates of the circular variances of the phase diference for the three conditions of the motor resonance data.} 
+\begin{tabular}{llllll}
+  \hline\noalign{\smallskip}
+Condition & Mode & Mean & sd & LB HPD & UB HPD\\ \hline\noalign{\smallskip}
+explicit & 0.21 & 0.26 & 0.09 & 0.09 & 0.45\\
+semi-implicit & 0.37 & 0.44 & 0.13 & 0.19 & 0.36\\
+implicit & 0.36 & 0.42 & 0.13 & 0.18 & 0.68\\
+   \hline
+\end{tabular}
+\label{TableresMRvar}
+\end{table}
 
 \subsection{Other approaches to circular ANOVA}\label{otheranova}
 
@@ -722,56 +769,66 @@ Watson-Williams test. Secondly, the samples are assumed to have the same
 circular variance. The von-Mises distribution is a type of distribution
 for circular data, it is unimodal with mean \(\mu\) and concentration
 \(\kappa\). The assumption of homogeneity of variance is tested within
-the \verb|watson.williams.test| function itself. The assumption of
-von-Misesness can be tested using e.g.~the Watson's goodness of fit test
-for the von Mises distribution. If we perform this test on the phase
-differences of the three subgroups we conclude that only the phase
-differences from the \verb|semi.implicit| and the \verb|implicit|
-condition are von-Mises distributed (\(H_0\) is not rejected). This
-means that it is not completely valid to perform the Watson-Williams
-test on the motor resonance data. In addition, the Watson-Williams test
-does not allow for the addition of covariates and thus cannot estimate
-AN(C)OVA models.
+the \verb|watson.williams.test| function itself. For the motor cognition
+data this assumption was met. The assumption of von-Misesness can be
+tested using e.g.~the Watson's goodness of fit test for the von Mises
+distribution. If we perform this test on the phase differences of the
+three subgroups we conclude that only the phase differences from the
+\verb|semi.implicit| and the \verb|implicit| condition are von-Mises
+distributed (\(H_0\) is not rejected). This means that it is not
+completely valid to perform the Watson-Williams test on the motor
+resonance data. In addition, the Watson-Williams test does not allow for
+the addition of covariates and thus cannot estimate AN(C)OVA models.
+Which the PN circular GLM introduced in Section \ref{RegModel} does
+allow for.
 
 Another method that we can use is a Bayesian circular GLM that falls
-within the intrinsic approach. The intrinsic approach to circular data
-differs from the embedding approach in the sense that it uses
-distributions that are directly defined on the circle instead of
+within the intrinsic approach {[}20{]}. The intrinsic approach to
+circular data differs from the embedding approach in the sense that it
+uses distributions that are directly defined on the circle instead of
 projecting distributions in bivariate linear space onto the circle. The
 Watson-Williams test is thus also a method that falls within the
-intrinsic approach. The Bayesian circular GLM can be fit using the
-package \verb|circglmbayes|. Note that because it is a GLM this method
-can also fit ANCOVA and regression models.
-\textcolor{red}{Dit model ook fitten?}
+intrinsic approach. The Bayesian circular GLM using the intrinsic
+approach can be fit using the package \verb|circglmbayes|. When
+non-informative priors are used this methods will give the same results
+as the Watson-Williams test. However because it is a GLM this method can
+also fit ANCOVA and regression models. In contrast to the the method
+from {[}20{]}, in which homogeneity of variances is assumed the PN
+circular GLM does not have this assumption. This allows for more
+flexible modelling including testing for an effect of predictor
+variables (e.g.~condition in Section \ref{ResMR}) on the variance.
 
 \section{Mixed-Effects models with a circular outcome}\label{MEModel}
 
-In this section we will introduce the circular mixed-effects model. We
-will first introduce a new dataset, the cognitive maps data, and give
+An additional advantage of employing the embedding approach to circular
+data over the intrinsic approach is that it is easier to model more
+complex data, e.g.~repeated measures data, since we can `borrow' methods
+to estimate these from the bivariate linear context. In this section we
+will introduce such a method: the circular mixed-effects model. We will
+first introduce a new dataset, the cognitive maps data, and give
 descriptive statistics. Then, we will shortly outline the theoretical
 background to the mixed-effects model and fit it to the cognitive maps
 data.
 
 \subsection{The cognitive maps data}\label{CogMap}
 
-The cognitive maps data is a subset of data from a study by Warren et
-al. (2017) on the geometry of humans' knowledge of navigation space. In
-their study Warren et al. (2017) amongst others conduct an experiment in
-which a total of 20 participants used virtual reality headsets to
-navigate through one of two a virtual mazes. The navigation task
-consisted of walking from a start object to a target object. In a
-training phase they had learned to navigate between different pairs of
-start and target objects in one of two versions of the maze. The number
-of trials each participant completed in this training phase was
-recorded. In the test phase of the experiment participants first walked
-to a start object. When they had reached this object the maze
-dissappeared and only a ``textured groundplane'' of the maze remained
-visible. The participants then turned toward the location of the target
-object that they had remembered during the training phase and started to
-walk toward the target. The angular difference between the initial
-walking direction of a participant from the start object and the
-location of the target object, that is, the angular error, was recorded
-as an outcome variable in the experiment.
+The cognitive maps data is a subset of data from a study by {[}5{]} on
+the geometry of humans' knowledge of navigation space. In their study
+{[}5{]} amongst others conduct an experiment in which a total of 20
+participants used virtual reality headsets to navigate through one of
+two virtual mazes. The navigation task consisted of walking from a start
+object to a target object. In a training phase they had learned to
+navigate between different pairs of start and target objects in one of
+two versions of the maze. The number of trials each participant
+completed in this training phase was recorded. In the test phase of the
+experiment participants first walked to a start object. When they had
+reached this object the maze dissappeared and only a ``textured
+groundplane'' of the maze remained visible. The participants then turned
+toward the location of the target object that they had remembered during
+the training phase and started to walk toward the target. The angular
+difference between the initial walking direction of a participant from
+the start object and the location of the target object, that is, the
+angular error, was recorded as an outcome variable in the experiment.
 
 The type of maze is a between-subjects factor, participants either had
 to navigate through a `Euclidean' maze or a `non-Euclidean' maze. The
@@ -796,8 +853,8 @@ For this experiment we could be interested in the question whether the
 participants in the non-Euclidean maze make use of the wormholes when
 navigating to the target objects and whether this is true for both the
 probe and standard target objects. Due to the design of the mazes the
-expected angular error was larger if a participant in the non-Euclidean
-maze used the wormhole to walk to the target object. We can thus use the
+expected angular error was larger if a participant used the wormhole to
+walk to the target object in the non-Euclidean maze. We can thus use the
 angular error, our outcome variable, to differentiate between
 participants that used the wormhole and those that took another path to
 the target object. Additionally we can control for the amount of trials
@@ -814,15 +871,14 @@ of maze \verb|Maze|, a between-subjects factor, and type of trial
 \verb|Trial.type|, a within-subjects factor. The variable \verb|Learn|
 indicates the amount of learning trials completed. \verb|L.c| is a
 centered version of this variable. The angular error is contained in the
-variables \verb|Error| and \verb|Error.rad| in degrees and radians (1
-rad = \(180/\pi\) degrees) respectively. Descriptives for this data are
-shown in Table \ref{TableDescriptivesMaps}. Note that we averaged over
-subjects and the trials of each type. The circular mean of the angular
-error for the standard trials in the Euclidean maze is thus an average
-over 10 participants and 4 trials. We see what the angular errors of
-both trial types for the non-Euclidean maze deviate more from
-0\(^{\circ}\) (direction of the target object) than for the Euclidean
-maze.
+variables \verb|Error| and \verb|Error.rad| in degrees and radians
+respectively. Descriptives for this data are shown in Table
+\ref{TableDescriptivesMaps}. Note that we averaged over subjects and the
+trials of each type. The circular mean of the angular error for the
+standard trials in the Euclidean maze is thus an average over 10
+participants and 4 trials. We see what the angular errors of both trial
+types for the non-Euclidean maze deviate more from 0\(^{\circ}\)
+(direction of the target object) than for the Euclidean maze.
 
 \begin{table}
 \centering
@@ -855,7 +911,7 @@ this approach is the same as outlined in Section
 vectors \(\boldsymbol{u}_{ij}\), one for each measurement \(j\) within a
 higher level observation \(i\). The solution for the missing data
 problem in the estimation of \(\boldsymbol{y}_{ij}\) and \(r_{ij}\) is
-outlined in Nuñez-Antonio \& Gutiérrez-Peña (2014).
+outlined in {[}21{]}.
 
 For the cognitive maps data with \(i = 1, \dots, 20\) individuals and
 \(j = 1, \dots, 8\) measurements per individual we fit a mixed-effects
@@ -884,9 +940,9 @@ take the Euclidean maze and standard trials as reference conditions.
 
 The interpretation problems caused by the two component structure in
 (\ref{regressionmaps}) is of a similar nature as the one in the GLM
-model. Cremers, Pennings, Mainhard, \& Klugkist (n.d.) introduce new
-tools that solve the interpretation of circular effects in PN
-mixed-effects models. In this tutorial we will also use these tools.
+model. {[}22{]} introduce new tools that solve the interpretation of
+circular effects in PN mixed-effects models. In this tutorial we will
+also use these tools.
 
 \subsubsection{Fitting the model}\label{fitMaps}
 
@@ -921,7 +977,7 @@ model. First we show results for the categorical variables type of maze
 
 \begin{table}
 \centering
-\caption{Descriptives of the posterior of the circular mean of the angular error for each condition.} 
+\caption{Posterior estimates of the circular mean of the angular error for each condition.} 
 \begin{tabular}{lllrrrrr}
   \hline\noalign{\smallskip}
 & Maze & Trial.type & mode & mean & sd & LB HPD & UB HPD  \\ \hline\noalign{\smallskip}
@@ -939,8 +995,8 @@ the average angular error for each of the categories. Note that because
 there is a continuous predictor in the model the posterior estimates
 represent a marginal effect, they are the effect for an individual with
 a 0 score on the continuous predictor \verb|L.c|. Because we centered
-this predictor this means that they are the effect for an individual
-that has completed an average number of training trials.
+this predictor this means that this is the effect for an individual that
+has completed an average number of training trials.
 
 By looking at the 95\(\%\) HPD intervals of the angular errors in Table
 \ref{TableResMaps} we can test whether the type of maze and type of
@@ -950,8 +1006,8 @@ that the HPD intervals of the angular error in the Euclidean and
 non-Euclidean overlaps and that thus the angular error is not different.
 This means that in the standard trials the participants on average did
 not make use of the wormholes in the non-Euclidean maze. For the probe
-trials however, the HPD intervals of the Euclidean and non-Euclidean
-does overlap and thus the angular error is different. This means that in
+trials however, the HPD intervals of the Euclidean and non-Euclidean do
+not overlap and thus the angular error is different. This means that in
 the probe trials, the participants on average did make use of the
 wormholes in the non-Euclidean maze.
 
@@ -959,9 +1015,8 @@ wormholes in the non-Euclidean maze.
 
 For the continuous variable \verb|L.c| we get a set of parameters,
 \(b_c\), \(SAM\) and \(AS\), describing its effect on the circle. How
-these parameters are computed is described in Cremers et al. (2018) and
-Cremers et al. (n.d.). In this paper we will only focus on how to
-interpret them.
+these parameters are computed is described in {[}18{]} and {[}22{]}. In
+this paper we will only focus on how to interpret them.
 
 \begin{figure}
 \includegraphics{circregline.pdf}
@@ -970,22 +1025,25 @@ interpret them.
 \end{figure}
 
 In Figure \ref{circregline} a circular regression line for the effect of
-a predictor \(x\) on the circular outcome is shown. This regression line
-can be described using the three circular coefficients \(b_c\), \(SAM\)
-and \(AS\). The coefficient \(b_c\) represents the slope of the circular
-regression line at the inflection point (the square in Figure
-\ref{circregline}). However, this may not be a representative effect for
-each dataset as the inflection point can lie in the extremes of the data
-(as in Figure \ref{circregline}) or even completely outside the range of
-the predictor \(x\). Therefore two additional circular coefficients were
-developed by Cremers et al. (2018), \(SAM\) and \(AS\). The coefficient
+a predictor \(x\) on the circular outcome is shown. Because the outcome
+variable is measured on a circular scale, the slope of this line (the
+effect of \(x\)) is not constant but different for different \(x\)
+values. The regression line can be described using the three circular
+coefficients \(b_c\), \(SAM\) and \(AS\). The coefficient \(b_c\)
+represents the slope of the circular regression line at the inflection
+point (the square in Figure \ref{circregline}). However, this may not be
+a representative effect for each dataset as the inflection point can lie
+in the extremes of the data (as in Figure \ref{circregline}) or even
+completely outside the range of the predictor \(x\). Therefore two
+additional circular coefficients were developed by {[}18{]}, the slope
+at the mean \(SAM\) and the average slope \(AS\). The coefficient
 \(SAM\) represents the slope of the circular regression line at the
-average of the predictor \(\bar{x}\) and the coefficients \(AS\)
-represents the average slope over all of the predictor values.
+average of the predictor (\(\bar{x}\)) and the coefficients \(AS\)
+represents the average slope over all values of \(x\).
 
 \begin{table}
 \centering
-\caption{Descriptives of the posterior of the coefficients of the effect of L.c on the angular error.} 
+\caption{Posterior estimates of the coefficients of the effect of L.c on the angular error.} 
 \begin{tabular}{lrrrrr}
   \hline\noalign{\smallskip}
 Coefficient & mode & mean & sd & LB HPD & UB HPD  \\ \hline\noalign{\smallskip}
@@ -1001,8 +1059,8 @@ For the effect of L.c on the angular error in the cognitive maps data,
 the HPD intervals for all three circular coefficients, \(b_c\), \(SAM\)
 and \(AS\) include 0 (see Table \ref{TableResMapsLc}. Thus we conclude
 that at the inflection point, at the average predictor value and on
-average \verb|L.c| the number of training trials does not influence the
-angular error. This is in fact a good thing, since it shows that the
+average the number of training trials (\verb|L.c|) does not influence
+the angular error. This is in fact a good thing, since it shows that the
 training phase of the experiment worked to get all participants at the
 same level. For educational purposes we will however continue to give
 the interpretation of the coefficients. The \(SAM\) is interpreted as
@@ -1019,25 +1077,27 @@ In mixed-effects models we are also interested in evaluating the
 variance of the random effects. In the model for the cognitive maps data
 we included a random intercept. This means that we estimate a separate
 intercept for each participant. How to compute random effect variances
-on the circle is outlined in Cremers et al. (n.d.). For the cognitive
-maps data the posterior mode of the intercept variance on the circle is
-estimated at \(3.5*10^{-5}\) and its HPD interval is
-\((4.2*10^{-6}; 1.4*10^{-3})\). This variance is very low which means
-that the participants do not differ a lot in their individual intercept
-estimates. Note that this is not necessarily problematic. In some cases
-we are not interested in the variances of the random efects but simply
-want to fit a mixed-effects model because we have within factors, such
-as \verb|Trial.type|, that cannot be properly incorporated in a standard
-regression model.
+on the circle is outlined in {[}22{]}. For the cognitive maps data the
+posterior mode of the intercept variance on the circle is estimated at
+\(3.5*10^{-5}\) and its HPD interval is \((4.2*10^{-6}; 1.4*10^{-3})\).
+This variance is very low which means that the participants do not
+differ a lot in their individual intercept estimates. Note that this is
+not necessarily problematic. In some cases we are not interested in the
+variances of the random efects but simply want to fit a mixed-effects
+model because we have within factors, such as \verb|Trial.type|, that
+cannot be properly incorporated in a standard regression model.
 
 \subsubsection{Model Comparison}\label{fitme}
 
 When fitting mixed-effects (or multilevel) models we often fit a set of
-nested models to our data and follow a model building strategy (Hox,
-2002). This can be done top-down, starting with the most complex model,
-or bottom-up, starting with the simplest model. Here we use a bottom-up
-strategy and start with the so called intercept-only model, a model
-containing only a fixed and random intercept:
+nested models to our data and follow a model building strategy {[}23{]}.
+We do this in case we have no specific model in mind that we want to
+test and want to explore the individual contributions of variables or
+groups of variables to the model. Such a model building strategy can be
+done top-down, starting with the most complex model, or bottom-up,
+starting with the simplest model. Here we use a bottom-up strategy and
+start with the so called intercept-only model, a model containing only a
+fixed and random intercept:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1048,10 +1108,10 @@ containing only a fixed and random intercept:
 \end{Shaded}
 
 We then update this model with fixed effects for the predictors at the
-lowest level (within-subjects factors), in this case only one,
-\verb|Trial.type|. We do this to check whether the set of predictors
-improved the fit of the model and can explain a part of the random
-intercept variance from the intercept-only model.
+lowest level (within-subjects factors), in this case \verb|Trial.type|.
+We do this to check whether the set of predictors improved the fit of
+the model and can explain a part of the random intercept variance from
+the intercept-only model.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1088,21 +1148,21 @@ different from 0 we also fit the model with only the \verb|Maze| and
 
 Additional steps, such as adding random slopes for first level
 predictors and cross-level interactions, can be taken. In this paper we
-will however stick to the previous three models.
+will however restrict the analysis to the previous three models.
 
 \textbf{Model fit}
 
 To assess the fit of the models we look at 4 different model fit
 criteria: two version of the deviance information criterion (DIC and
 DIC\(_{alt}\)) and two versions of the Watanabe-Akaike information
-criterion (WAIC\(_1\) and WAIC\(_2\)) Gelman et al. (2014). We choose
-these four criteria because they are specifically useful in Bayesian
-models where MCMC methods have been used to estimate the parameters. All
-four criteria have a fit part consisting of a measure based on the
-loglikelihood and include a penalty in the form of an effective number
-of parameters. For all criteria lower values indicate better fit. Gelman
-et al. (2014) describes how to compute these criteria. Table
-\ref{TableModelFitMaps} shows these criteria for 4 different models.
+criterion (WAIC\(_1\) and WAIC\(_2\)). We choose these four criteria
+because they are specifically useful in Bayesian models where MCMC
+methods have been used to estimate the parameters. All four criteria
+have a fit part consisting of a measure based on the loglikelihood and
+include a penalty in the form of an effective number of parameters. For
+all criteria lower values indicate better fit. {[}19{]} describes how to
+compute these criteria. Table \ref{TableModelFitMaps} shows the results
+of these criteria for 4 different models.
 
 \begin{table}
 \centering
@@ -1125,7 +1185,7 @@ that the predictor \verb|Trial.type| improves the fit of the model over
 the intercept-only model and that the predictors \verb|Maze| and
 \verb|Trial.type| together improve the fit of the model over the model
 with only the \verb|Trial.type| predictor. Because the variable
-\verb|L.c| had no effect it is logical that this predictor does not
+\verb|L.c| had no effect it is as expected that this predictor does not
 improve the fit of the most right model over the model with the
 \verb|Maze| and \verb|Trial.type| predictors. We conclude that the model
 with the predictors \verb|Trial.type| and \verb|Maze| fits best.
@@ -1146,11 +1206,11 @@ equals \(6.61*10^{-5} (8.20*10^{-6}; 3.62*10^{-3})\), the posterior mode
 of the intercept variance in the model with the \verb|Maze| and
 \verb|Trial.type| predictors equals
 \(3.25*10^{-5} (4.40*10^{-6}; 1.59*10^{-3})\). First of all, note that
-in the intercept-only model there is almost to random intercept
+in the intercept-only model there is almost no random intercept
 variance. The posterior mode of the circular variance is very close to
 0. Compared to the estimates of the variance in the intercept-only model
 there is hardly any change in estimates for the variance in the mode
-with \verb|Maze| and \verb|Trial.type|.Furthermore, their HPD intervals
+with \verb|Maze| and \verb|Trial.type|. Furthermore, their HPD intervals
 have a very large overlap. We thus conclude that the variables
 \verb|Maze| and \verb|Trial.type| did not explain any variance in the
 random intercepts. This makes sense as there was harly any intercept
@@ -1173,17 +1233,16 @@ data. In the wrapping approach the data on the circle is assumed to have
 origined from wrapping a univariate distribution on the real line onto
 the circle. In the intrinsic approach distributions, such as the von
 Mises distribution, are directly defined on the circle. For both
-approaches models have been described in the literature (Fisher \& Lee,
-1992; Gill \& Hangartner, 2010; Lagona, 2016; Mulder \& Klugkist, 2017;
-Ravindran \& Ghosh, 2011). The regression model using the intrinsic
-approach from Fisher \& Lee (1992) is implemented in the package
-\verb|circular| and the circular general linear model from Mulder \&
-Klugkist (2017) is implemented in the package \verb|circglmmbayes|. For
-neither approach however a detailed tutorial describing how to analyze
-circular data using the functions from their package has been written
-thus far. Furthermore, the PN approach to circular modelling has the
-additional advantage that it is relatively easy to fit more complex
-models, e.g.~the mixed-effects model in this tutorial.
+approaches models have been described in the literature {[}20,24--27{]}.
+The regression model using the intrinsic approach from {[}27{]} is
+implemented in the package \verb|circular| and the circular general
+linear model from {[}20{]} is implemented in the package
+\verb|circglmmbayes|. For neither approach however a detailed tutorial
+describing how to analyze circular data using the functions from their
+package has been written thus far. Furthermore, the PN approach to
+circular modelling has the additional advantage that it is relatively
+easy to fit more complex models, e.g.~the mixed-effects model in this
+tutorial.
 
 \newpage
 
@@ -1192,144 +1251,150 @@ models, e.g.~the mixed-effects model in this tutorial.
 \addcontentsline{toc}{section}{References}
 
 \hypertarget{refs}{}
-\leavevmode\hypertarget{ref-circularpackage}{}%
-Agostinelli, C., \& Lund, U. (2013). \emph{R package \texttt{circular}:
-Circular statistics (version 0.4-7)}. Retrieved from
-\url{https://r-forge.r-project.org/projects/circular/}
-
-\leavevmode\hypertarget{ref-Batschelet1981}{}%
-Batschelet, E. (1981). \emph{Circular statistics in biology}. London:
-Academic Press.
-
-\leavevmode\hypertarget{ref-brunye2015map}{}%
-Brunyé, T. T., Burte, H., Houck, L. A., \& Taylor, H. A. (2015). The map
-in our head is not oriented north: Evidence from a real-world
-environment. \emph{PLoS ONE}, \emph{10}(9), 1--12.
-doi:\href{https://doi.org/10.1371/journal.pone.0135803}{10.1371/journal.pone.0135803}
-
-\leavevmode\hypertarget{ref-CremersMulderKlugkist2017}{}%
-Cremers, J., Mulder, K. T., \& Klugkist, I. (2018). Circular
-interpretation of regression coefficients. \emph{British Journal of
-Mathematical and Statistical Psychology}, \emph{71}(1), 75--95.
-doi:\href{https://doi.org/10.1111/bmsp.12108}{10.1111/bmsp.12108}
-
-\leavevmode\hypertarget{ref-longitudinalpaper}{}%
-Cremers, J., Pennings, H. J. M., Mainhard, M. T., \& Klugkist, I.
-(n.d.). Longitudinal circular modelling of circumplex measurements for
-teacher behavior. \emph{Working Paper}.
-
-\leavevmode\hypertarget{ref-fisher1995statistical}{}%
-Fisher, N. I. (1995). \emph{Statistical analysis of circular data}.
-Cambridge: Cambridge University Press.
-
-\leavevmode\hypertarget{ref-fisher1992regression}{}%
-Fisher, N. I., \& Lee, A. J. (1992). Regression models for an angular
-response. \emph{Biometrics}, \emph{48}(3), 665--677.
-
-\leavevmode\hypertarget{ref-BDA}{}%
-Gelman, A., Carlin, J., Stern, H., Dunson, D., Vehtari, A., \& Rubin, D.
-(2014). \emph{Bayesian data analysis} (3rd ed.). Boca Raton, FL: Chapman
-\& Hall/CRC.
-
-\leavevmode\hypertarget{ref-gill2010}{}%
-Gill, J., \& Hangartner, D. (2010). Circular data in political science
-and how to handle it. \emph{Political Analysis}, \emph{18}(3), 316--336.
-doi:\href{https://doi.org/10.1093/pan/mpq009}{10.1093/pan/mpq009}
-
-\leavevmode\hypertarget{ref-heyes2016longitudinal}{}%
-Heyes, S. B., Zokaei, N., \& Husain, M. (2016). Longitudinal development
-of visual working memory precision in childhood and early adolescence.
-\emph{Cognitive Development}, \emph{39}, 36--44.
-doi:\href{https://doi.org/10.1016/j.cogdev.2016.03.004}{10.1016/j.cogdev.2016.03.004}
-
-\leavevmode\hypertarget{ref-hox2002multilevel}{}%
-Hox, J. J. (2002). \emph{Multilevel analysis: Techniques and
-applications}. Hove: Routledge.
-
-\leavevmode\hypertarget{ref-kirschner2009joint}{}%
-Kirschner, S., \& Tomasello, M. (2009). Joint drumming: Social context
-facilitates synchronization in preschool children. \emph{Journal of
-Experimental Child Psychology}, \emph{102}(3), 299--314.
-doi:\href{https://doi.org/10.1016/j.jecp.2008.07.005}{10.1016/j.jecp.2008.07.005}
-
-\leavevmode\hypertarget{ref-lagona2016regression}{}%
-Lagona, F. (2016). Regression analysis of correlated circular data based
-on the multivariate von mises distribution. \emph{Environmental and
-Ecological Statistics}, \emph{23}(1), 89--113.
-doi:\href{https://doi.org/10.1007/s10651-015-0330-y}{10.1007/s10651-015-0330-y}
+\leavevmode\hypertarget{ref-rivest2015general}{}%
+1. Rivest L-P, Duchesne T, Nicosia A, Fortin D. A general angular
+regression model for the analysis of data on animal movement in ecology.
+Journal of the Royal Statistical Society: Series C (Applied Statistics).
+2015;63: 445--463.
+doi:\href{https://doi.org/10.1111/rssc.12124}{10.1111/rssc.12124}
 
 \leavevmode\hypertarget{ref-mardia2007protein}{}%
-Mardia, K. V., Taylor, C. C., \& Subramaniam, G. K. (2006). Protein
-bioinformatics and mixtures of bivariate von mises distributions for
-angular data. \emph{Biometrics}, \emph{63}(2), 505--512.
+2. Mardia KV, Taylor CC, Subramaniam GK. Protein bioinformatics and
+mixtures of bivariate von mises distributions for angular data.
+Biometrics. 2006;63: 505--512.
 doi:\href{https://doi.org/10.1111/j.1541-0420.2006.00682.x}{10.1111/j.1541-0420.2006.00682.x}
 
+\leavevmode\hypertarget{ref-rutishauser2010human}{}%
+3. Rutishauser U, Ross IB, Mamelak AN, Schuman EM. Human memory strength
+is predicted by theta-frequency phase-locking of single neurons. Nature.
+2010;464: 903--907.
+doi:\href{https://doi.org/10.1038/nature08860}{10.1038/nature08860}
+
+\leavevmode\hypertarget{ref-brunye2015map}{}%
+4. Brunyé TT, Burte H, Houck LA, Taylor HA. The map in our head is not
+oriented north: Evidence from a real-world environment. PLoS ONE.
+2015;10: 1--12.
+doi:\href{https://doi.org/10.1371/journal.pone.0135803}{10.1371/journal.pone.0135803}
+
+\leavevmode\hypertarget{ref-warren2017wormholes}{}%
+5. Warren WH, Rothman DB, Schnapp BH, Ericson JD. Wormholes in virtual
+space: From cognitive maps to cognitive graphs. Cognition. 2017;166:
+152--163.
+doi:\href{https://doi.org/10.1016/j.cognition.2017.05.020}{10.1016/j.cognition.2017.05.020}
+
 \leavevmode\hypertarget{ref-matsushima2014independence}{}%
-Matsushima, E. H., Vaz, A. M., Cazuza, R. A., \& Ribeiro Filho, N. P.
-(2014). Independence of egocentric and exocentric direction processing
-in visual space. \emph{Psychology \& Neuroscience}, \emph{7}(3),
-277--284.
+6. Matsushima EH, Vaz AM, Cazuza RA, Ribeiro Filho NP. Independence of
+egocentric and exocentric direction processing in visual space.
+Psychology \& Neuroscience. 2014;7: 277--284.
 doi:\href{https://doi.org/10.3922/j.psns.2014.050}{10.3922/j.psns.2014.050}
 
+\leavevmode\hypertarget{ref-heyes2016longitudinal}{}%
+7. Heyes SB, Zokaei N, Husain M. Longitudinal development of visual
+working memory precision in childhood and early adolescence. Cognitive
+Development. 2016;39: 36--44.
+doi:\href{https://doi.org/10.1016/j.cogdev.2016.03.004}{10.1016/j.cogdev.2016.03.004}
+
+\leavevmode\hypertarget{ref-kirschner2009joint}{}%
+8. Kirschner S, Tomasello M. Joint drumming: Social context facilitates
+synchronization in preschool children. Journal of experimental child
+psychology. 2009;102: 299--314.
+doi:\href{https://doi.org/10.1016/j.jecp.2008.07.005}{10.1016/j.jecp.2008.07.005}
+
+\leavevmode\hypertarget{ref-fisher1995statistical}{}%
+9. Fisher NI. Statistical analysis of circular data. Cambridge:
+Cambridge University Press; 1995.
+
+\leavevmode\hypertarget{ref-Batschelet1981}{}%
+10. Batschelet E. Circular statistics in biology. London: Academic
+Press; 1981.
+
+\leavevmode\hypertarget{ref-pewsey2013circular}{}%
+11. Pewsey A, Neuhäuser M, Ruxton GD. Circular statistics in r. Oxford
+University Press; 2013.
+
+\leavevmode\hypertarget{ref-team2017r}{}%
+12. R Core Team. R: A language and environment for statistical computing
+{[}Internet{]}. Vienna, Austria: R Foundation for Statistical Computing;
+2017. Available: \url{https://www.R-project.org/}
+
+\leavevmode\hypertarget{ref-bpnreg2018}{}%
+13. Cremers J. Bpnreg: Bayesian projected normal regression models for
+circular data {[}Internet{]}. 2018. Available:
+\url{https://CRAN.R-project.org/package=bpnreg}
+
+\leavevmode\hypertarget{ref-circularpackage}{}%
+14. Agostinelli C, Lund U. R package \texttt{circular}: Circular
+statistics (version 0.4-93) {[}Internet{]}. 2017. Available:
+\url{https://r-forge.r-project.org/projects/circular/}
+
+\leavevmode\hypertarget{ref-puglisi2017role}{}%
+15. Puglisi G, Leonetti A, Landau A, Fornia L, Cerri G, Borroni P. The
+role of attention in human motor resonance. PloS one. 2017;12: e0177457.
+doi:\href{https://doi.org/10.1371/journal.pone.0177457}{10.1371/journal.pone.0177457}
+
+\leavevmode\hypertarget{ref-presnell1998projected}{}%
+16. Presnell B, Morrison SP, Littell RC. Projected multivariate linear
+models for directional data. Journal of the American Statistical
+Association. Taylor \& Francis Group; 1998;93: 1068--1077.
+doi:\href{https://doi.org/10.1080/01621459.1998.10473768}{10.1080/01621459.1998.10473768}
+
+\leavevmode\hypertarget{ref-nunez2011bayesian}{}%
+17. Nuñez-Antonio G, Gutiérrez-Peña E, Escarela G. A Bayesian regression
+model for circular data based on the projected normal distribution.
+Statistical Modelling. SAGE Publications; 2011;11: 185--201.
+doi:\href{https://doi.org/10.1177/1471082X1001100301}{10.1177/1471082X1001100301}
+
+\leavevmode\hypertarget{ref-CremersMulderKlugkist2017}{}%
+18. Cremers J, Mulder KT, Klugkist I. Circular interpretation of
+regression coefficients. British Journal of Mathematical and Statistical
+Psychology. 2018;71: 75--95.
+doi:\href{https://doi.org/10.1111/bmsp.12108}{10.1111/bmsp.12108}
+
+\leavevmode\hypertarget{ref-BDA}{}%
+19. Gelman A, Carlin J, Stern H, Dunson D, Vehtari A, Rubin D. Bayesian
+data analysis. 3rd ed. Boca Raton, FL: Chapman \& Hall/CRC; 2014.
+
 \leavevmode\hypertarget{ref-mulder2017bayesian}{}%
-Mulder, K., \& Klugkist, I. (2017). Bayesian estimation and hypothesis
-tests for a circular generalized linear model. \emph{Journal of
-Mathematical Psychology}, \emph{80}, 4--14.
+20. Mulder K, Klugkist I. Bayesian estimation and hypothesis tests for a
+circular generalized linear model. Journal of Mathematical Psychology.
+2017;80: 4--14.
 doi:\href{https://doi.org/10.1016/j.jmp.2017.07.001}{10.1016/j.jmp.2017.07.001}
 
 \leavevmode\hypertarget{ref-nunez2014bayesian}{}%
-Nuñez-Antonio, G., \& Gutiérrez-Peña, E. (2014). A Bayesian model for
-longitudinal circular data based on the projected normal distribution.
-\emph{Computational Statistics \& Data Analysis}, \emph{71}, 506--519.
+21. Nuñez-Antonio G, Gutiérrez-Peña E. A Bayesian model for longitudinal
+circular data based on the projected normal distribution. Computational
+Statistics \& Data Analysis. Elsevier; 2014;71: 506--519.
 doi:\href{https://doi.org/10.1016/j.csda.2012.07.025}{10.1016/j.csda.2012.07.025}
 
-\leavevmode\hypertarget{ref-nunez2011bayesian}{}%
-Nuñez-Antonio, G., Gutiérrez-Peña, E., \& Escarela, G. (2011). A
-Bayesian regression model for circular data based on the projected
-normal distribution. \emph{Statistical Modelling}, \emph{11}(3),
-185--201.
-doi:\href{https://doi.org/10.1177/1471082X1001100301}{10.1177/1471082X1001100301}
+\leavevmode\hypertarget{ref-longitudinalpaper}{}%
+22. Cremers J, Pennings HJM, Mainhard MT, Klugkist I. Longitudinal
+circular modelling of circumplex measurements for teacher behavior.
+Working Paper.
 
-\leavevmode\hypertarget{ref-pewsey2013circular}{}%
-Pewsey, A., Neuhäuser, M., \& Ruxton, G. D. (2013). \emph{Circular
-statistics in r}. Oxford University Press.
-
-\leavevmode\hypertarget{ref-presnell1998projected}{}%
-Presnell, B., Morrison, S. P., \& Littell, R. C. (1998). Projected
-multivariate linear models for directional data. \emph{Journal of the
-American Statistical Association}, \emph{93}(443), 1068--1077.
-doi:\href{https://doi.org/10.1080/01621459.1998.10473768}{10.1080/01621459.1998.10473768}
-
-\leavevmode\hypertarget{ref-puglisi2017role}{}%
-Puglisi, G., Leonetti, A., Landau, A., Fornia, L., Cerri, G., \&
-Borroni, P. (2017). The role of attention in human motor resonance.
-\emph{PloS One}, \emph{12}(5), e0177457.
-doi:\href{https://doi.org/10.1371/journal.pone.0177457}{10.1371/journal.pone.0177457}
+\leavevmode\hypertarget{ref-hox2002multilevel}{}%
+23. Hox JJ. Multilevel analysis: Techniques and applications. Hove:
+Routledge; 2002.
 
 \leavevmode\hypertarget{ref-ravindran2011bayesian}{}%
-Ravindran, P., \& Ghosh, S. K. (2011). Bayesian analysis of circular
-data using wrapped distributions. \emph{Journal of Statistical Theory
-and Practice}, \emph{5}(4), 547--561.
+24. Ravindran P, Ghosh SK. Bayesian analysis of circular data using
+wrapped distributions. Journal of Statistical Theory and Practice.
+Taylor \& Francis; 2011;5: 547--561.
 doi:\href{https://doi.org/10.1080/15598608.2011.10483731}{10.1080/15598608.2011.10483731}
 
-\leavevmode\hypertarget{ref-rivest2015general}{}%
-Rivest, L.-P., Duchesne, T., Nicosia, A., \& Fortin, D. (2015). A
-general angular regression model for the analysis of data on animal
-movement in ecology. \emph{Journal of the Royal Statistical Society:
-Series C (Applied Statistics)}, \emph{63}(3), 445--463.
-doi:\href{https://doi.org/10.1111/rssc.12124}{10.1111/rssc.12124}
+\leavevmode\hypertarget{ref-lagona2016regression}{}%
+25. Lagona F. Regression analysis of correlated circular data based on
+the multivariate von mises distribution. Environmental and ecological
+statistics. Springer; 2016;23: 89--113.
+doi:\href{https://doi.org/10.1007/s10651-015-0330-y}{10.1007/s10651-015-0330-y}
 
-\leavevmode\hypertarget{ref-rutishauser2010human}{}%
-Rutishauser, U., Ross, I. B., Mamelak, A. N., \& Schuman, E. M. (2010).
-Human memory strength is predicted by theta-frequency phase-locking of
-single neurons. \emph{Nature}, \emph{464}(7290), 903--907.
-doi:\href{https://doi.org/10.1038/nature08860}{10.1038/nature08860}
+\leavevmode\hypertarget{ref-gill2010}{}%
+26. Gill J, Hangartner D. Circular data in political science and how to
+handle it. Political Analysis. SPM-PMSAPSA; 2010;18: 316--336.
+doi:\href{https://doi.org/10.1093/pan/mpq009}{10.1093/pan/mpq009}
 
-\leavevmode\hypertarget{ref-warren2017wormholes}{}%
-Warren, W. H., Rothman, D. B., Schnapp, B. H., \& Ericson, J. D. (2017).
-Wormholes in virtual space: From cognitive maps to cognitive graphs.
-\emph{Cognition}, \emph{166}, 152--163.
-doi:\href{https://doi.org/10.1016/j.cognition.2017.05.020}{10.1016/j.cognition.2017.05.020}
+\leavevmode\hypertarget{ref-fisher1992regression}{}%
+27. Fisher NI, Lee AJ. Regression models for an angular response.
+Biometrics. JSTOR; 1992;48: 665--677.
 
 
 \end{document}

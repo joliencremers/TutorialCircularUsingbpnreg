@@ -326,6 +326,14 @@ for the lack of knowledge of the actual number of mixture components.},
   publisher = {Elsevier}
 }
 
+@Manual{bpnreg2018,
+  title =  {bpnreg: Bayesian Projected Normal Regression Models for Circular Data},
+  author = {Cremers, J.},
+  year =   {2018},
+  note =   {R package version 1.0.0},
+  url =    {https://CRAN.R-project.org/package=bpnreg}
+}
+
 @Article{brazier1994confidence,
   author =    {Brazier, KTS},
   title =     {Confidence intervals from the Rayleigh test},
@@ -444,9 +452,9 @@ for the lack of knowledge of the actual number of mixture components.},
 }
 
 @Manual{circularpackage,
-  title =  {{R} package \texttt{circular}: Circular Statistics (version 0.4-7)},
+  title =  {{R} package \texttt{circular}: Circular Statistics (version 0.4-93)},
   author = {C. Agostinelli and U. Lund},
-  year =   {2013},
+  year =   {2017},
   url =    {https://r-forge.r-project.org/projects/circular/}
 }
 
@@ -1439,16 +1447,9 @@ They provide a method for estimating the mean and kappa and drawing samples from
 }
 
 @Article{longitudinalpaper,
-  author =  {Cremers, J. and Pennings, Helena JM. and Mainhard, M T and Klugkist, Irene.},
+  author =  {Cremers, J. and Pennings, Helena J M. and Mainhard, M T and Klugkist, Irene.},
   title =   {Longitudinal circular modelling of circumplex measurements for teacher behavior.},
   journal = {Working Paper}
-}
-
-@Article{lund2013package,
-  author =  {Lund, Ulric and Agostinelli, Claudio and Agostinelli, Maintainer Claudio},
-  title =   {Package ‘circular’},
-  journal = {Repository CRAN},
-  year =    {2013}
 }
 
 @Book{lynch2007introduction,
@@ -2251,11 +2252,13 @@ They provide a method for estimating the mean and kappa and drawing samples from
   author =    {Sun, Jianguo}
 }
 
-@TechReport{team2013r,
-  author =      {{R Development Core Team}},
-  title =       {R: A language and environment for statistical computing},
-  institution = {ISBN 3-900051-07-0. R Foundation for Statistical Computing. Vienna, Austria, 2013. url: http://www. R-project. org},
-  year =        {2013}
+@Manual{team2017r,
+  title =        {R: A Language and Environment for Statistical Computing},
+  author =       {{R Core Team}},
+  organization = {R Foundation for Statistical Computing},
+  address =      {Vienna, Austria},
+  year =         {2017},
+  url =          {https://www.R-project.org/}
 }
 
 @Article{umbach2006some,
